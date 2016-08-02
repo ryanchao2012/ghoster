@@ -102,6 +102,8 @@
                         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
                     {% endfor %}</ul>
                 {% endif %}
+            {% endblock messages %}
+
             <!-- Content -->
             <div id="content" class="{% block coltype %}colM{% endblock %}">
                 {% block pretitle %}{% endblock %}
