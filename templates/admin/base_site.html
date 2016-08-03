@@ -3,7 +3,7 @@
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-<div class="gh-nav-menu-details-blog"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></div>
+{{ site_header|default:_('Django administration') }}
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
