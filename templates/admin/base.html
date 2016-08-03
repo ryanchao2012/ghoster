@@ -3,13 +3,26 @@
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
     <title>{% block title %}{% endblock %}</title>
+    {% block stylesheet %}
     <link rel="stylesheet" type="text/css"
-          href="{% block stylesheet %}{% static "admin/css/ghost.css" %}{% endblock %}"/>
+          href="{% static "admin/css/bootstrap.css" %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static "admin/vendor/fontawesome/css/font-awesome.min.css" %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static "admin/vendor/animo/animate+animo.css" %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static "admin/vendor/csspinner/csspinner.min.css" %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static "admin/css/app.css" %}"/>
+    {% endblock %}
     {% block extrastyle %}{% endblock %}
     {% if LANGUAGE_BIDI %}
         <link rel="stylesheet" type="text/css"
               href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}"/>{% endif %}
-    {% block extrahead %}{% endblock %}
+    {% block extrahead %}
+    <script src="{% static "admin/vendor/modernizr/modernizr.js" %}" type="application/javascript"></script>
+    <script src="{% static "admin/vendor/fastclick/fastclick.js" %}" type="application/javascript"></script>
+    {% endblock %}
     {% block blockbots %}
         <meta name="robots" content="NONE,NOARCHIVE"/>{% endblock %}
 </head>
@@ -18,76 +31,121 @@
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
       data-admin-utc-offset="{% now "Z" %}">
 
+<section class="wrapper">
 <!-- Container -->
-<div id="ember" class="ember-view">
-    <div id="ember" class="ember-view gh-app">
-        <div class="gh-viewport">
+<nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
 
             {% if not is_popup %}
                 <!-- Header -->
-                <div id="ember" class="ember-view gh-nav">
-                    <header id="ember" role="button" class="gh-nav-menu">
-                        <div class="gh-nav-menu-details">
-                            {% block branding %}{% endblock %}
-                        </div>
-                        {% block usertools %}
-                            {% if has_permission %}
-                                <div id="user-tools">
-                                    {% block welcome-msg %}
-                                        {% trans 'Welcome,' %}
-                                        <strong>{% firstof user.get_short_name user.get_username %}</strong>.
-                                    {% endblock %}
-                                    {% block userlinks %}
-                                        {% if site_url %}
-                                            <a href="{{ site_url }}">{% trans 'View site' %}</a> /
-                                        {% endif %}
-                                        {% if user.is_active and user.is_staff %}
-                                            {% url 'django-admindocs-docroot' as docsroot %}
-                                            {% if docsroot %}
-                                                <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
-                                            {% endif %}
-                                        {% endif %}
-                                        {% if user.has_usable_password %}
-                                            <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
-                                            /
-                                        {% endif %}
-                                        <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
-                                    {% endblock %}
-                                </div>
-                            {% endif %}
+                <div class="navbar-header">
+               <a href="#" class="navbar-brand">
+               <div class="brand-logo">{% block branding %}{% endblock %}</div>
+               <div class="brand-logo-collapsed">DJ</div>
+            </a>
+         </div>
+         <div class="nav-wrapper">
+     <ul class="nav navbar-nav">
+        <li>
+           <a href="#" data-toggle="aside">
+              <em class="fa fa-align-left"></em>
+           </a>
+        </li>
+        <li>
+           <a href="#" data-toggle="navbar-search">
+              <em class="fa fa-search"></em>
+           </a>
+        </li>
+     </ul>
+     <ul class="nav navbar-nav navbar-right">
+     <li>
+        <a href="#" data-toggle="offsidebar">
+                     <em class="fa fa-align-right"></em>
+                  </a>
+               </li>
+             </ul>
+             </div>
+             <form role="search" class="navbar-form">
+           <div class="form-group has-feedback">
+              <input type="text" placeholder="Type and hit Enter.." class="form-control">
+              <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
+           </div>
+           <button type="submit" class="hidden btn btn-default">Submit</button>
+        </form>
+     </nav>
+        <aside class="aside">
+          <nav class="sidebar">
+            <ul class="nav">
+               <li>
+                 {% block usertools %}
+                  {% if has_permission %}
+                 <div data-toggle="collapse-next" class="item user-block has-submenu">
+                   <div class="user-block-picture">
+                      <img src="{% static "admin/img/user/avatar.jpg" %}"alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                   </div>
+                   <div class="user-block-info">
+                        <span class="user-block-name item-text">
+                          {% block welcome-msg %}
+                              {% trans 'Welcome' %}</span>
+                        <span class="user-block-role">
+                          {% firstof user.get_short_name user.get_username %}
+                          </span>
+                          {% endblock %}
+                     </div>
+                  </div>
+                  {% block userlinks %}
+                  <ul class="nav collapse">
+                   <li>
+                     {% if site_url %}
+                         <a href="{{ site_url }}">{% trans 'View site' %}</a>
+                     {% endif %}
+                     {% if user.is_active and user.is_staff %}
+                         {% url 'django-admindocs-docroot' as docsroot %}
+                         {% if docsroot %}
+                             <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
+                         {% endif %}
+                     {% endif %}
+                   </li>
+                   <li>
+                     {% if user.has_usable_password %}
+                         <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
+                     {% endif %}
+                   </li>
+                   <li>
+                     <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+                 {% endblock %}
+         {% endif %}
+                   </li>
+                </ul>
+             </li>
                         {% endblock %}
                         {% block nav-global %}{% endblock %}
-                    </header>
-                    <nav id="">
+
                         {% block ghoster-menu %}
                             {% if ghoster_app_list %}
-
                                 {% for app in ghoster_app_list %}
-                                    <div class="app-{{ app.app_label }} module">
-                                        <table>
-                                            <caption>
-                                                <a href="{{ app.app_url }}" class="section"
-                                                   title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
-                                            </caption>
-                                            {% for model in app.models %}
-                                                <tr class="model-{{ model.object_name|lower }}">
-                                                    {% if model.admin_url %}
-                                                        <th scope="row"><a
-                                                                href="{{ model.admin_url }}">{{ model.name }}</a></th>
-                                                    {% else %}
-                                                        <th scope="row">{{ model.name }}</th>
-                                                    {% endif %}
-                                                </tr>
-                                            {% endfor %}
-                                        </table>
-                                    </div>
-                                {% endfor %}
-
-                            {% endif %}
-                        {% endblock %}
-                    </nav>
-                </div>
-                <!-- END Header -->
+              <li>
+                 <a href="{{ app.app_url }}" data-toggle="collapse-next" class="has-submenu"
+                    title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">
+                    <em class="fa fa-bar-chart-o"></em>
+                    <span class="item-text">{{ app.name }}</span></a>
+                 <ul class="nav collapse ">
+                       {% for model in app.models %}
+                               {% if model.admin_url %}
+                           <li><a href="{{ model.admin_url }}" data-toggle="" class="no-submenu">
+                             <span class="item-text">{{ model.name }}</span></a></li>
+                               {% else %}
+                                   <li>{{ model.name }}</li>
+                               {% endif %}
+                       {% endfor %}
+           {% endfor %}
+       {% endif %}
+                 </ul>
+                  </li>
+                </ul>
+            </nav>
+                  {% endblock %}
+        </aside>
+         <section>
                 {% block breadcrumbs %}
                     <div class="breadcrumbs">
                         <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
@@ -118,10 +176,21 @@
             <!-- END Content -->
 
             {% block footer %}
-                <div id="footer"></div>{% endblock %}
+                <div id="footer">
+                  <script src="{% static "admin/vendor/jquery/jquery.min.js" %}"
+                   type="application/javascript"></script>
+                  <script src="{% static "admin/vendor/bootstrap/js/bootstrap.min.js" %}"
+                   type="application/javascript"></script>
+                  <script src="{% static "admin/vendor/animo/animo.min.js" %}"
+                  type="application/javascript"></script>
+                  <script src="{% static "admin/js/app.js" %}" type="application/javascript"></script>
+                </div>
+                {% endblock %}
         </div>
         <!-- END Container -->
     </div>
 </div>
+ </section>
+</section>
 </body>
 </html>
