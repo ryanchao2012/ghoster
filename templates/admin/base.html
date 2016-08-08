@@ -22,45 +22,49 @@
 
 <section class="wrapper">
     <!-- Container -->
-    <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
+    {% if not is_popup %}
+        {% block ghoster-title %}
 
-        {% if not is_popup %}
-            <!-- Header -->
-            <div class="navbar-header">
-                <a href="#" class="navbar-brand">
-                    <div class="brand-logo">{% block branding %}{% endblock %}</div>
-                    <div class="brand-logo-collapsed">DJ</div>
-                </a>
-            </div>
-            <div class="nav-wrapper">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" data-toggle="aside">
-                            <em class="fa fa-align-left"></em>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" data-toggle="navbar-search">
-                            <em class="fa fa-search"></em>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" data-toggle="offsidebar">
-                            <em class="fa fa-align-right"></em>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <form role="search" class="navbar-form">
-                <div class="form-group has-feedback">
-                    <input type="text" placeholder="Type and hit Enter.." class="form-control">
-                    <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
+            <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
+                <!-- Header -->
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">
+                        <div class="brand-logo">{% block branding %}{% endblock %}</div>
+                        <div class="brand-logo-collapsed">DJ</div>
+                    </a>
                 </div>
-                <button type="submit" class="hidden btn btn-default">Submit</button>
-            </form>
+                <div class="nav-wrapper">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" data-toggle="aside">
+                                <em class="fa fa-align-left"></em>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="navbar-search">
+                                <em class="fa fa-search"></em>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="offsidebar">
+                                <em class="fa fa-align-right"></em>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <form role="search" class="navbar-form">
+                    <div class="form-group has-feedback">
+                        <input type="text" placeholder="Type and hit Enter.." class="form-control">
+                        <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
+                    </div>
+                    <button type="submit" class="hidden btn btn-default">Submit</button>
+                </form>
             </nav>
+        {% endblock %}
+
+        {% block nav-global %}
             <aside class="aside">
                 <nav class="sidebar">
                     <ul class="nav">
@@ -73,77 +77,82 @@
                                                  height="60" class="img-thumbnail img-circle">
                                         </div>
                                         <div class="user-block-info">
-                        <span class="user-block-name item-text">
-                          {% block welcome-msg %}
-                              {% trans 'Welcome' %}</span>
-                              <span class="user-block-role">
-                          {% firstof user.get_short_name user.get_username %}
-                          </span>
-                          {% endblock %}
+                                            {% block welcome-msg %}
+                                                <span class="user-block-name item-text">
+                                                    {% trans 'Welcome' %}</span>
+                                                <span class="user-block-role">
+                                                {% firstof user.get_short_name user.get_username %}
+                                            </span>
+                                            {% endblock %}
                                         </div>
                                     </div>
                                     {% block userlinks %}
                                         <ul class="nav collapse">
-                                        <li>
-                                            {% if site_url %}
-                                                <a href="{{ site_url }}">{% trans 'View site' %}</a>
-                                            {% endif %}
-                                            {% if user.is_active and user.is_staff %}
-                                                {% url 'django-admindocs-docroot' as docsroot %}
-                                                {% if docsroot %}
-                                                    <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
+                                            <li>
+                                                {% if site_url %}
+                                                    <a href="{{ site_url }}">{% trans 'View site' %}</a>
                                                 {% endif %}
-                                            {% endif %}
-                                        </li>
-                                        <li>
-                                            {% if user.has_usable_password %}
-                                                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
-                                            {% endif %}
-                                        </li>
-                                        <li>
-                                        <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+                                                {% if user.is_active and user.is_staff %}
+                                                    {% url 'django-admindocs-docroot' as docsroot %}
+                                                    {% if docsroot %}
+                                                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </li>
+                                            <li>
+                                                {% if user.has_usable_password %}
+                                                    <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
+                                                {% endif %}
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+                                            </li>
+                                        </ul>
                                     {% endblock %}
                                 {% endif %}
-                            </li>
-                            </ul>
-                                </li>
                             {% endblock %}
-                        {% block nav-global %}{% endblock %}
+                        </li>
+
 
                         {% block ghoster-menu %}
                             {% if ghoster_app_list %}
                                 {% for app in ghoster_app_list %}
                                     <li>
-                                    <a href="{{ app.app_url }}" data-toggle="collapse-next" class="has-submenu"
-                                       title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">
-                                        <em class="fa fa-bar-chart-o"></em>
-                                        <span class="item-text">{{ app.name }}</span></a>
-                                    <ul class="nav collapse ">
-                                    {% for model in app.models %}
-                                        {% if model.admin_url %}
-                                            <li><a href="{{ model.admin_url }}" data-toggle="" class="no-submenu">
-                                                <span class="item-text">{{ model.name }}</span></a></li>
-                                        {% else %}
-                                            <li>{{ model.name }}</li>
-                                        {% endif %}
-                                    {% endfor %}
+                                        <a href="{{ app.app_url }}" data-toggle="collapse-next" class="has-submenu"
+                                           title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">
+                                            <em class="fa fa-bar-chart-o"></em>
+                                            <span class="item-text">{{ app.name }}</span></a>
+                                        <ul class="nav collapse ">
+                                            {% for model in app.models %}
+                                                {% if model.admin_url %}
+                                                    <li><a href="{{ model.admin_url }}" data-toggle=""
+                                                           class="no-submenu">
+                                                        <span class="item-text">{{ model.name }}</span></a>
+                                                    </li>
+                                                {% else %}
+                                                    <li>{{ model.name }}</li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+
                                 {% endfor %}
                             {% endif %}
-                        </ul>
-                        </li>
-                            </ul>
-                            </nav>
                         {% endblock %}
+                    </ul>
+                </nav>
             </aside>
-            <section>
-            {% block breadcrumbs %}
-                <div class="breadcrumbs">
-                    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-                    {% if title %} &rsaquo; {{ title }}{% endif %}
-                </div>
-            {% endblock %}
-        {% endif %}
+        {% endblock %}
 
+        {% block breadcrumbs %}
+            <div class="breadcrumbs">
+                <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+                {% if title %} &rsaquo; {{ title }}{% endif %}
+            </div>
+        {% endblock %}
+    {% endif %}
+
+    <section>
         {% block messages %}
             {% if messages %}
                 <ul class="messagelist">{% for message in messages %}
@@ -170,11 +179,8 @@
                 {{ base_media.js }}
             </div>
         {% endblock %}
-        </div>
         <!-- END Container -->
-        </div>
-        </div>
-        </section>
+    </section>
 </section>
 </body>
 </html>
