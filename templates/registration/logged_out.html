@@ -1,7 +1,7 @@
 {% extends "admin/base_site.html" %}
 {% load i18n %}
-
-{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></div>{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block breadcrumbs %}{% endblock %}
 
 {% block content %}
 
@@ -10,3 +10,4 @@
 <p><a href="{% url 'admin:index' %}">{% trans 'Log in again' %}</a></p>
 
 {% endblock %}
+{% block ghoster-title %}{% endblock %}
