@@ -30,41 +30,78 @@
 {% endfor %}
 {% endif %}
 
-<div id="content-main">
 
-{% if user.is_authenticated %}
-<p class="errornote">
-{% blocktrans trimmed %}
-    You are authenticated as {{ username }}, but are not authorized to
-    access this page. Would you like to login to a different account?
-{% endblocktrans %}
-</p>
-{% endif %}
-
-<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-  <div class="form-row">
-    {{ form.username.errors }}
-    {{ form.username.label_tag }} {{ form.username }}
-  </div>
-  <div class="form-row">
-    {{ form.password.errors }}
-    {{ form.password.label_tag }} {{ form.password }}
-    <input type="hidden" name="next" value="{{ next }}" />
-  </div>
-  {% url 'admin_password_reset' as password_reset_url %}
-  {% if password_reset_url %}
-  <div class="password-reset-link">
-    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
-  </div>
-  {% endif %}
-  <div class="submit-row">
-    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
-  </div>
-</form>
-
+<div style="height: 100%; padding: 50px 0; background-color: #eef0f4" class="row row-table">
+     <div class="col-lg-3 col-md-6 col-sm-8 col-xs-12 align-middle">
+        <!-- START panel-->
+        <div data-toggle="play-animation" data-play="fadeInUp" data-offset="0" class="panel panel-default panel-flat">
+           <p class="text-center mb-lg">
+             {% if user.is_authenticated %}
+             <p class="errornote">
+             {% blocktrans trimmed %}
+                 You are authenticated as {{ username }}, but are not authorized to
+                 access this page. Would you like to login to a different account?
+             {% endblocktrans %}
+             </p>
+             {% endif %}
+           </p>
+           <div class="panel-body">
+              <form role="form" class="mb-lg" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+                 <div class="form-group has-feedback">
+                    <input id="id_username" name="username" type="text" class="form-control">
+                 </div>
+                 <div class="form-group has-feedback">
+                    <input id="id_password" name="password" type="password" class="form-control">
+                 </div>
+                 <div class="clearfix">
+                    <div class="checkbox c-checkbox pull-left mt0">
+                       <label>
+                          <input type="checkbox" value="">
+                          <span class="fa fa-check"></span>Remember Me</label>
+                    </div>
+                    {% url 'admin_password_reset' as password_reset_url %}
+                    {% if password_reset_url %}
+                    <div class="pull-right"><a href="{{ password_reset_url }}" class="text-muted">{% trans 'Forgotten your password or username?' %}</a>
+                    </div>
+                    {% endif %}
+                 </div>
+                 <button type="submit" class="btn btn-block btn-primary">Login</button>
+              </form>
+           </div>
+        </div>
+        <!-- END panel-->
+     </div>
 <script type="text/javascript">
 document.getElementById('id_username').focus()
 </script>
-</div>
+  </div>
+
+
+
+
+
+
+{#<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}#}
+{#  <div class="form-row">#}
+{#    {{ form.username.errors }}#}
+{#    {{ form.username.label_tag }} {{ form.username }}#}
+{#  </div>#}
+{#  <div class="form-row">#}
+{#    {{ form.password.errors }}#}
+{#    {{ form.password.label_tag }} {{ form.password }}#}
+{#    <input type="hidden" name="next" value="{{ next }}" />#}
+{#  </div>#}
+{#  {% url 'admin_password_reset' as password_reset_url %}#}
+{#  {% if password_reset_url %}#}
+{#  <div class="password-reset-link">#}
+{#    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>#}
+{#  </div> bloc#}
+{#  {% endif %}#}
+{#  <div class="submit-row">#}
+{#    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />#}
+{#  </div>#}
+{#</form>#}
+
+
 {% endblock %}
 {% block ghoster-title %}{% endblock %}
