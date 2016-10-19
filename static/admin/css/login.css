@@ -1,7 +1,12 @@
 /* LOGIN FORM */
+@import 'bigvideo.css';
 
 body.login {
-    background: #f8f8f8;
+    background-color: #f8f8f8;
+}
+
+.wrapper > section {
+  background-color: inherit !important;
 }
 
 .login #header {

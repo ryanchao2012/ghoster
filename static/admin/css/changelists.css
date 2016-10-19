@@ -1,5 +1,9 @@
 /* CHANGELISTS */
 
+.panel-heading li {
+  list-style: none;
+}
+
 #changelist {
     position: relative;
     width: 100%;
@@ -7,6 +11,10 @@
 
 #changelist table {
     width: 100%;
+}
+
+.object-tools li {
+  list-style: none;
 }
 
 .change-list .hiddenfields { display:none; }
@@ -31,6 +39,8 @@
 
 #changelist-form .results {
   overflow-x: auto;
+  background: #fafafa;
+  padding: 15px;
 }
 
 #changelist .toplinks {
@@ -38,6 +48,7 @@
 }
 
 #changelist .paginator {
+    padding: 15px;
     color: #666;
     border-bottom: 1px solid #eee;
     background: #fff;
@@ -47,7 +58,7 @@
 /* CHANGELIST TABLES */
 
 #changelist table thead th {
-    padding: 0;
+    padding: 8px;
     white-space: nowrap;
     vertical-align: middle;
 }
@@ -273,7 +284,7 @@
 }
 
 #changelist .actions {
-    padding: 10px;
+    padding: 15px;
     background: #fff;
     border-top: none;
     border-bottom: none;

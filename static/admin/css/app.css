@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700);
 /**
  * 47admin - Admin Bootstrap Skin
- * 
+ *
  * Author: @geedmo
  * Website: http://geedmo.com
  * License: Codecanyon Regular License
@@ -21,6 +21,9 @@ hr {
 .panel {
   border: 1px solid #eee;
   border-bottom: 1px solid #d1d2d3;
+}
+.object-tools li {
+  list-style: none;
 }
 .panel .panel-heading a {
   text-decoration: none !important;
@@ -3498,7 +3501,7 @@ fieldset[disabled] .fc-button.active {
  ========================================================================== */
 /**
  * Custom form elements
- *    - Checkbox 
+ *    - Checkbox
  *    - Radios
  *    - Switch
  *    - Rounded inputs
@@ -3885,7 +3888,7 @@ html.markdownarea-fullscreen,
  ========================================================================== */
 /**
  * Style for the markdown area on new and edit article pages
- * Most of the style overwrite codemirror and 
+ * Most of the style overwrite codemirror and
  * markdownarea uikit addon styles
  */
 /* CODEMIRROR MD THEME */

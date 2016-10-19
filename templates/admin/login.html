@@ -1,7 +1,15 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static %}
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{% static "admin/vendor/jquery/jquery.js" %}"><\/script>')</script>
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}" />
+<script src="{% static "admin/vendor/jquery-ui/ui/jquery-ui.js" %}"></script>
+<script src="{% static "admin/vendor/jquery-ui/ui/minified/jquery-ui.min.js" %}"></script>
+
+<script src="//vjs.zencdn.net/4.3/video.js"></script>
+<script src="{% static "admin/vendor/BigVideo/lib/bigvideo.js" %}"></script>
 {{ form.media }}
 {% endblock %}
 
@@ -16,6 +24,7 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
+
 {% if form.errors and not form.non_field_errors %}
 <p class="errornote">
 {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
@@ -29,9 +38,14 @@
 </p>
 {% endfor %}
 {% endif %}
-
-
-<div style="height: 100%; padding: 50px 0; background-color: #eef0f4" class="row row-table">
+<script>
+$(function() {
+     var BV = new $.BigVideo();
+BV.init();
+BV.show('https://0.s3.envato.com/h264-video-previews/85bfebc0-d172-4748-a0dd-e08b30e7a67a/17421483.mp4',{ambient:true});
+});
+</script>
+<div style="height: auto; padding: 50px 0;" class="row row-table">
      <div class="col-lg-3 col-md-6 col-sm-8 col-xs-12 align-middle">
         <!-- START panel-->
         <div data-toggle="play-animation" data-play="fadeInUp" data-offset="0" class="panel panel-default panel-flat">
@@ -71,13 +85,10 @@
         </div>
         <!-- END panel-->
      </div>
-<script type="text/javascript">
-document.getElementById('id_username').focus()
-</script>
+{# <script type="text/javascript"> #}
+{# document.getElementById('id_username').focus() #}
+{# </script> #}
   </div>
-
-
-
 
 
 

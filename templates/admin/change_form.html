@@ -23,7 +23,8 @@
 {% endblock %}
 {% endif %}
 
-{% block content %}<div id="content-main">
+{% block content %}<div class="panel panel-default">
+<div class="panel-body">
 {% block object-tools %}
 {% if change %}{% if not is_popup %}
   <ul class="object-tools">
@@ -92,5 +93,5 @@
 {% prepopulated_fields_js %}
 
 </div>
-</form></div>
+</form></div></div>
 {% endblock %}

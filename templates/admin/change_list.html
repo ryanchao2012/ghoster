@@ -45,7 +45,7 @@
 {% endif %}
 
 {% block coltype %}flex{% endblock %}
-
+{% block ghoster-search %}{% search_form cl %}{% endblock %}
 {% block content %}
   <div id="content-main">
     {% block object-tools %}
@@ -69,7 +69,6 @@
         {{ cl.formset.non_form_errors }}
     {% endif %}
     <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
-      {% block search %}{% search_form cl %}{% endblock %}
       {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
 
       {% block filters %}
