@@ -9,6 +9,7 @@ class BaseMadiaWidget(forms.TextInput):
                     'admin/vendor/animo/animate+animo.css',
                     'admin/vendor/csspinner/csspinner.min.css',
                     'admin/css/app.css',
+                    'admin/css/base.css',
                     )
         }
         js = (
