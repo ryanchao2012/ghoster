@@ -54,15 +54,15 @@
                         </li>
                     </ul>
                 </div>
-                  {% block ghoster-search %}
-                <form role="search" class="navbar-form">
-                    <div class="form-group has-feedback">
-                        <input type="text" placeholder="Type and hit Enter.." class="form-control">
-                        <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
-                    </div>
-                    <button type="submit" class="hidden btn btn-default">Submit</button>
-                </form>
-                {% endblock  %}
+                {% block ghoster-search %}
+                    <form role="search" class="navbar-form">
+                        <div class="form-group has-feedback">
+                            <input type="text" placeholder="Type and hit Enter.." class="form-control">
+                            <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>
+                        </div>
+                        <button type="submit" class="hidden btn btn-default">Submit</button>
+                    </form>
+                {% endblock %}
             </nav>
         {% endblock %}
         {% block nav-global %}
