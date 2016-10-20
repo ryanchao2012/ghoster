@@ -15,7 +15,7 @@ body {
 
 #toolbar{
     width: 280px;
-    padding: 10px;
+    padding: 11px;
 }
 /* LINKS */
 
@@ -100,7 +100,7 @@ h5 {
 
 ul li {
     list-style-type: square;
-    padding: 1px 0;
+    /*padding: 1px 0;*/
 }
 
 li ul {
@@ -170,6 +170,11 @@ hr {
 }
 
 /* TEXT STYLES & MODIFIERS */
+
+.content-form{
+    background: #fafafa;
+    padding: 15px;
+}
 
 .small {
     font-size: 11px;
@@ -687,7 +692,7 @@ a.deletelink:focus, a.deletelink:hover {
     padding-left: 0;
     float: right;
     position: relative;
-    margin-top: -60px;
+    margin-top: -45px;
 }
 
 .form-row .object-tools {
@@ -713,7 +718,7 @@ a.deletelink:focus, a.deletelink:hover {
     display: block;
     float: left;
     padding: 3px 12px;
-    background: #999;
+    background: #3498db;
     font-weight: 400;
     font-size: 11px;
     text-transform: uppercase;
@@ -722,7 +727,8 @@ a.deletelink:focus, a.deletelink:hover {
 }
 
 .object-tools a:focus, .object-tools a:hover {
-    background-color: #417690;
+    background-color: #00afd1;
+    text-decoration: none;
 }
 
 .object-tools a:focus{
