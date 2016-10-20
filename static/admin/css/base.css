@@ -251,7 +251,7 @@ td, th {
     line-height: 16px;
     border-bottom: 1px solid #eee;
     vertical-align: top;
-    padding: 10px;
+    padding: 15px;
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
@@ -687,7 +687,7 @@ a.deletelink:focus, a.deletelink:hover {
     padding-left: 0;
     float: right;
     position: relative;
-    margin-top: -48px;
+    margin-top: -60px;
 }
 
 .form-row .object-tools {
@@ -763,7 +763,7 @@ table#change-history tbody th {
 }
 
 #content {
-    padding: 20px 40px;
+    padding: 20px 0px;
 }
 
 .dashboard #content {
