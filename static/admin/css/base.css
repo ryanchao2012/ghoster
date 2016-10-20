@@ -13,12 +13,16 @@ body {
     background: #fff;
 }
 
+#toolbar{
+    width: 280px;
+    padding: 10px;
+}
 /* LINKS */
 
-a:link, a:visited {
+/*a:link, a:visited {
     color: #447e9b;
     text-decoration: none;
-}
+}*/
 
 a:focus, a:hover {
     color: #036;
@@ -247,7 +251,7 @@ td, th {
     line-height: 16px;
     border-bottom: 1px solid #eee;
     vertical-align: top;
-    padding: 8px;
+    padding: 10px;
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
@@ -281,7 +285,7 @@ tr.alt {
 }
 
 .row2 {
-    background: #f9f9f9;
+    background: #fafbfc;
 }
 
 /* SORTABLE TABLES */
@@ -290,7 +294,7 @@ thead th {
     padding: 5px 10px;
     line-height: normal;
     text-transform: uppercase;
-    background: #f6f6f6;
+    /*background: #f6f6f6;*/
 }
 
 thead th a:link, thead th a:visited {
@@ -298,7 +302,7 @@ thead th a:link, thead th a:visited {
 }
 
 thead th.sorted {
-    background: #eee;
+    /*background: #eee;*/
 }
 
 thead th.sorted .text {
@@ -317,7 +321,7 @@ table thead th .text a {
 }
 
 table thead th .text a:focus, table thead th .text a:hover {
-    background: #eee;
+    /*background: #eee;*/
 }
 
 thead th.sorted a.sortremove {
@@ -435,14 +439,14 @@ select[multiple] {
 
 /* FORM BUTTONS */
 
-.button, input[type=submit], input[type=button], .submit-row input, a.button {
+/*.button, input[type=submit], input[type=button], .submit-row input, a.button {
     background: #79aec8;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     color: #fff;
     cursor: pointer;
-}
+}*/
 
 a.button {
     padding: 4px 5px;
@@ -483,7 +487,6 @@ input[type=button][disabled].default {
 .module {
     border: none;
     margin-bottom: 30px;
-    background: #fff;
 }
 
 .module p, .module ul, .module h3, .module h4, .module dl, .module pre {
@@ -505,11 +508,11 @@ input[type=button][disabled].default {
 
 .module h2, .module caption, .inline-group h2 {
     margin: 0;
-    padding: 8px;
+    padding: 10px 15px;
     font-weight: 400;
     font-size: 13px;
     text-align: left;
-    background: #79aec8;
+    background: #3498db;
     color: #fff;
 }
 
@@ -639,6 +642,7 @@ div.breadcrumbs {
     font-size: 14px;
     color: #c4dce8;
     text-align: left;
+    display: none;
 }
 
 div.breadcrumbs a {

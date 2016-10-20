@@ -6,11 +6,11 @@
 {% endif %}
 {% if results %}
 <div class="results">
-  <table class="table table-striped table-hover">
+  <table id="result_list">
   <thead>
   <tr role="row">
   {% for header in result_headers %}
-  <th {{ header.class_attrib }}>
+  <th scope="col" {{ header.class_attrib }}>
      {% if header.sortable %}
        {% if header.sort_priority > 0 %}
          <div class="sortoptions">
@@ -22,8 +22,7 @@
      {% endif %}
      <div class="text">{% if header.sortable %}<a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>{% else %}<span>{{ header.text|capfirst }}</span>{% endif %}</div>
      <div class="clear"></div>
-  </th>
-  {% endfor %}
+  </th>{% endfor %}
   </tr>
   </thead>
   <tbody>

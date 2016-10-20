@@ -1,8 +1,5 @@
 /* CHANGELISTS */
 
-.panel-heading li {
-  list-style: none;
-}
 
 #changelist {
     position: relative;
@@ -11,10 +8,6 @@
 
 #changelist table {
     width: 100%;
-}
-
-.object-tools li {
-  list-style: none;
 }
 
 .change-list .hiddenfields { display:none; }
@@ -29,7 +22,7 @@
 
 .change-list .filtered .results, .change-list .filtered .paginator,
 .filtered #toolbar, .filtered div.xfull {
-    margin-right: 280px;
+    /*margin-right: 280px;*/
     width: auto;
 }
 
@@ -39,7 +32,7 @@
 
 #changelist-form .results {
   overflow-x: auto;
-  background: #fafafa;
+  background: #ffffff;
   padding: 15px;
 }
 
@@ -51,7 +44,7 @@
     padding: 15px;
     color: #666;
     border-bottom: 1px solid #eee;
-    background: #fff;
+    background: #fafafa;
     overflow: hidden;
 }
 
@@ -139,6 +132,7 @@
     background: #f8f8f8;
     border-left: none;
     margin: 0;
+    display: none;
 }
 
 #changelist-filter h2 {
@@ -229,7 +223,7 @@
     padding-bottom: 10px;
     line-height: 22px;
     margin: 0;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #eee;
 }
 
 .paginator a:link, .paginator a:visited {
@@ -270,7 +264,7 @@
 /* ACTIONS */
 
 .filtered .actions {
-    margin-right: 280px;
+    /*margin-right: 280px;*/
     border-right: none;
 }
 
@@ -285,7 +279,7 @@
 
 #changelist .actions {
     padding: 15px;
-    background: #fff;
+    background: #fafafa;
     border-top: none;
     border-bottom: none;
     line-height: 24px;
@@ -312,8 +306,8 @@
 }
 
 #changelist .actions select {
-    vertical-align: top;
-    height: 24px;
+    /*vertical-align: top;*/
+    height: 37px;
     background: none;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -329,7 +323,7 @@
 
 #changelist .actions label {
     display: inline-block;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     font-size: 13px;
 }
 
