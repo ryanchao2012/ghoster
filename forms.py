@@ -5,6 +5,7 @@ class BaseMadiaWidget(forms.TextInput):
         css = {
             'all': (
                     'admin/css/bootstrap.css',
+                    'open-iconic/font/css/open-iconic-bootstrap.css',
                     'admin/vendor/fontawesome/css/font-awesome.min.css',
                     'admin/vendor/animo/animate+animo.css',
                     'admin/vendor/csspinner/csspinner.min.css',
