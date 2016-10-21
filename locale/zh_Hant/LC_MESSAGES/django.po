@@ -568,7 +568,7 @@ msgid "Reset my password"
 msgstr "重設我的密碼"
 
 msgid "Authentication and Authorization"
-msgstr "認證和授權"
+msgstr "使用者認證和授權"
 
 #~ msgid "Successfully deleted %(count)d %(items)s."
 #~ msgstr "成功的刪除了 %(count)d 個 %(items)s."
