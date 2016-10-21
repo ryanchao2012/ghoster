@@ -932,12 +932,12 @@ table#change-history tbody th {
     color: #333;
 }
 
-.delete-confirmation form input[type="submit"] {
+/*.delete-confirmation form input[type="submit"] {
     background: #ba2121;
     border-radius: 4px;
     padding: 10px 15px;
     color: #fff;
-}
+}*/
 
 .delete-confirmation form input[type="submit"]:active,
 .delete-confirmation form input[type="submit"]:focus,

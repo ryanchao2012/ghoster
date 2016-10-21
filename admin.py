@@ -8,7 +8,7 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_filter = ('editor', 'tag')
     search_fields = ('tag__name', 'editor__name',)
-    # raw_id_fields = ('tag',)
+    raw_id_fields = ('tag',)
 
 class EditorAdmin(admin.ModelAdmin):
     list_display = ('name',)
