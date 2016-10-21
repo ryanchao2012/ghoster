@@ -119,7 +119,6 @@
                                     <li>
                                         <a href="{{ app.app_url }}" data-toggle="collapse-next" class="has-submenu"
                                            title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">
-{#                                            <span class="oi oi-bar-chart"></span>#}
                                             <span class="oi oi-list-rich"></span>
                                             <span class="item-text">{{ app.name }}</span></a>
                                         <ul class="nav collapse ">
@@ -129,7 +128,8 @@
 
                                                         <a href="{{ model.admin_url }}" data-toggle=""
                                                            class="no-submenu">
-                                                        <span class="item-text">{{ model.name }}</span></a>
+                                                        <span class="item-text">{{ model.name }}</span>
+                                                        </a>
                                                     </li>
                                                 {% else %}
                                                     <li>{{ model.name }}</li>

@@ -17,12 +17,14 @@ class MenuAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 class PageAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ('title', 'menu')
 
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
 
 # Register your models here.
@@ -32,6 +34,6 @@ class TagAdmin(admin.ModelAdmin):
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Editor, EditorAdmin)
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Menu, MenuAdmin)
 admin.site.register(Page, PageAdmin)
