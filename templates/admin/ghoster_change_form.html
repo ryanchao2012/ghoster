@@ -23,7 +23,46 @@
 {% endblock %}
 {% endif %}
 
-{% block content %}<div id="content-main">
+{% block ghoster-title %}
+
+    <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
+        <!-- Header -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <div class="brand-logo">{% block branding %}{{block.super}}{% endblock %}</div>
+                <div class="brand-logo-collapsed">DJ</div>
+            </a>
+        </div>
+        <div class="nav-wrapper">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" data-toggle="aside">
+                        <span class="oi oi-collapse-left"></span>
+                    </a>
+                </li>
+                <li>
+                  <input type="text" class="form-control form-control-rounded mt10">
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+          <input type="submit" value="儲存" class="btn btn-primary btn-sm mt15">
+        </li>
+                <li>
+                    <a href="#" data-toggle="offsidebar">
+                        <span class="oi oi-align-right"></span>
+{#                                <em class="fa fa-align-right"></em>#}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content_title %}
+{% endblock %}
+
+{% block content %}
 {% block object-tools %}
 {% if change %}{% if not is_popup %}
   <ul class="object-tools">
@@ -37,11 +76,12 @@
   </ul>
 {% endif %}{% endif %}
 {% endblock %}
-<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
-<div class="content-form">
-{% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1" />{% endif %}
-{% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}" />{% endif %}
-{% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+
+
+<textarea id="demo2">
+
+</textarea>
+
 {% if errors %}
     <p class="errornote">
     {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
@@ -49,13 +89,8 @@
     {{ adminform.form.non_field_errors }}
 {% endif %}
 
-{% block field_sets %}
-{% for fieldset in adminform %}
-  {# {% include "admin/includes/fieldset.html" %} #}
-{% endfor %}
-{% endblock %}
 
-{% block after_field_sets %}{% endblock %}
+
 
 {% block inline_field_sets %}
 {% for inline_admin_formset in inline_admin_formsets %}
@@ -86,11 +121,38 @@
             });
         })(django.jQuery);
     </script>
+
+
+    <link rel="stylesheet" href="{% static "admin/css/simplemde.css" %}">
+
+<script src="{% static "admin/js/simplemde.js" %}"></script>
+
+<script>
+
+	new SimpleMDE({
+		element: document.getElementById("demo1"),
+		spellChecker: false,
+	});
+
+	new SimpleMDE({
+		element: document.getElementById("demo2"),
+		spellChecker: false,
+		autosave: {
+			enabled: true,
+			unique_id: "demo2",
+		},
+	});
+
+	new SimpleMDE({
+		element: document.getElementById("demo3"),
+		status: false,
+		toolbar: false,
+	});
+
+</script>
 {% endblock %}
 
 {# JavaScript for prepopulated fields #}
 {% prepopulated_fields_js %}
 
-</div>
-</form></div>
 {% endblock %}

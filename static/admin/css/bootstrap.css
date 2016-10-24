@@ -721,6 +721,13 @@ pre code {
   background-color: transparent;
   border-radius: 0;
 }
+.mt15 {
+  margin-top: 15px;
+}
+.mt10 {
+  margin-top: 10px;
+  width: 500px !important;
+}
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll;
@@ -4737,7 +4744,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel {
   margin-bottom: 20px;
-  background-color: rgba(255,255,255,0.7); 
+  background-color: rgba(255,255,255,0.7);
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
