@@ -1,0 +1,78 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/showdownjs/showdown/1.4.2/dist/showdown.min.js"></script>
+    {{ media }}
+{% endblock %}
+
+
+{% block ghoster-title %}
+    <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
+        <!-- Header -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <div class="brand-logo">{% block branding %}{{ block.super }}{% endblock %}</div>
+                <div class="brand-logo-collapsed">DJ</div>
+            </a>
+        </div>
+        <div class="nav-wrapper">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" data-toggle="aside">
+                        <span class="oi oi-collapse-left"></span>
+                    </a>
+                </li>
+                <li>
+                    <input type="text" class="form-control form-control-rounded mt10">
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <input type="submit" value="儲存" class="btn btn-primary btn-sm mt15">
+                </li>
+                <li>
+                    <a href="#" data-toggle="offsidebar">
+                        <span class="oi oi-align-right"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content_title %}
+{% endblock %}
+
+{% block content %}
+    <textarea id="ghost-post">{{ original.content }}</textarea>
+    <div id="ghost-preview"></div>
+
+    {#    <script>#}
+    {#    new SimpleMDE({#}
+    {#		element: document.getElementById("ghost-post"),#}
+    {#		spellChecker: false,#}
+    {#	});#}
+    {#    </script>#}
+    
+    <script>
+        var reloadShowdown = function () {
+            var text = document.getElementById('ghost-post').value,
+                    target = document.getElementById('ghost-preview'),
+                    converter = new showdown.Converter();
+            target.innerHTML = converter.makeHtml(text);
+        };
+        var text = document.getElementById('ghost-post');
+        window.onload = reloadShowdown;
+        text.onchange = reloadShowdown;
+        text.onkeyup = reloadShowdown;
+    </script>
+
+    {#{{ original.content }}#}
+    {#    {{ original.date }}#}
+    {#    {{ original.editor }}#}
+    {# JavaScript for prepopulated fields #}
+    {#    {% prepopulated_fields_js %}#}
+
+{% endblock %}
