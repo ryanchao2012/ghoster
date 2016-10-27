@@ -78,9 +78,20 @@
 {% endblock %}
 
 
-<textarea id="demo2">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.4.2/showdown.min.js"></script>
 
-</textarea>
+<div class="container">
+<textarea id="ghost-post">{{ original.content }}</textarea>
+<div id="preview"></div>
+</div>
+
+<script>
+        var text = document.getElementById('ghost-post').value,
+            target = document.getElementById('preview'),
+            converter = new showdown.Converter(),
+                html = converter.makeHtml(text);
+        target.innerHTML = html;
+    </script>
 
 {% if errors %}
     <p class="errornote">
@@ -123,33 +134,7 @@
     </script>
 
 
-    <link rel="stylesheet" href="{% static "admin/css/simplemde.css" %}">
 
-<script src="{% static "admin/js/simplemde.js" %}"></script>
-
-<script>
-
-	new SimpleMDE({
-		element: document.getElementById("demo1"),
-		spellChecker: false,
-	});
-
-	new SimpleMDE({
-		element: document.getElementById("demo2"),
-		spellChecker: false,
-		autosave: {
-			enabled: true,
-			unique_id: "demo2",
-		},
-	});
-
-	new SimpleMDE({
-		element: document.getElementById("demo3"),
-		status: false,
-		toolbar: false,
-	});
-
-</script>
 {% endblock %}
 
 {# JavaScript for prepopulated fields #}
