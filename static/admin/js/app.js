@@ -1211,7 +1211,7 @@
     Markdownarea.defaults = {
         "mode"         : "split",
         "height"       : 500,
-        "maxsplitsize" : 800,
+        "maxsplitsize" : 600,
         "codemirror"   : { mode: 'gfm', tabMode: 'indent', tabindex: "2", lineWrapping: true, dragDrop: false, autoCloseTags: true, matchTags: true },
         "toolbar"      : [ "bold", "italic", "strike", "link", "picture", "blockquote", "listUl", "listOl" ],
         "lblPreview"   : "Preview",
