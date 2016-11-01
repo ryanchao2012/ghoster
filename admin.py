@@ -9,8 +9,8 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('editor', 'tag')
     search_fields = ('tag__name', 'editor__name',)
     raw_id_fields = ('tag',)
-    change_form_template = 'admin/ghoster_change_form.html'
-    add_form_template = 'admin/ghoster_change_form.html'
+    change_form_template = 'admin/ghoster_change_form2.html'
+    add_form_template = 'admin/ghoster_change_form2.html'
 
 class EditorAdmin(admin.ModelAdmin):
     list_display = ('name',)

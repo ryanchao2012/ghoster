@@ -727,6 +727,7 @@ pre code {
 .mt10 {
   margin-top: 10px;
   width: 500px !important;
+  margin-left: 30px;
 }
 .pre-scrollable {
   max-height: 340px;

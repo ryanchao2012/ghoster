@@ -36,11 +36,6 @@
                 <div class="nav-wrapper">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#" data-toggle="aside">
-                                <span class="oi oi-collapse-left"></span>
-                            </a>
-                        </li>
-                        <li>
                           {% block ghoster-search %}
                               {# <form role="search" class="navbar-form"> #}
                                   {# <div class="form-group has-feedback"> #}
@@ -140,6 +135,16 @@
                                 {% endfor %}
                             {% endif %}
                         {% endblock %}
+                        <li class="nav-footer">
+                      <div class="nav-footer-divider"></div>
+                      <!-- START button group-->
+                      <div class="btn-group text-center">
+                         <button type="button" data-toggle="aside" data-title="aside" class="btn btn-link" data-original-title="" title="">
+                            <em class="fa fa-sign-out text-muted"></em>
+                         </button>
+                      </div>
+                      <!-- END button group-->
+                   </li>
                     </ul>
                 </nav>
             </aside>

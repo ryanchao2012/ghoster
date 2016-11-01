@@ -23,20 +23,55 @@
 {% endblock %}
 {% endif %}
 
-{% block content %}<div id="content-main">
-{% block object-tools %}
-{% if change %}{% if not is_popup %}
-  <ul class="object-tools">
-    {% block object-tools-items %}
-    <li>
-        {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
-        <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
-    </li>
-    {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
-    {% endblock %}
-  </ul>
-{% endif %}{% endif %}
+
+{% block ghoster-title %}
+    <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
+        <!-- Header -->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <div class="brand-logo">{% block branding %}{{ block.super }}{% endblock %}</div>
+                <div class="brand-logo-collapsed">DJ</div>
+            </a>
+        </div>
+        <div class="nav-wrapper">
+            <ul class="nav navbar-nav">
+              <div class="col-sm-10">
+                              <input id="input-id-1" type="text" class="form-control">
+                           </div>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+              {% block object-tools %}
+              {% if change %}{% if not is_popup %}
+                  {% block object-tools-items %}
+                  <li>
+                      {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+                      <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
+                  </li>
+                  {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
+                  {% endblock %}
+              {% endif %}{% endif %}
+              {% endblock %}
+                <li>
+                    <a href="#" data-toggle="offsidebar">
+                        <span class="oi oi-align-right"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <aside class="offsidebar">
+         <!-- START Off Sidebar (right)-->
+
+
+         <!-- END Off Sidebar (right)-->
+      </aside>
 {% endblock %}
+
+
+
+
+{% block content %}<div id="content-main">
 <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
 <div class="content-form">
 {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1" />{% endif %}

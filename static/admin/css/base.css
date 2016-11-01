@@ -98,10 +98,10 @@ h5 {
     letter-spacing: 1px;
 }
 
-ul li {
+/*ul li {
     list-style-type: square;
-    /*padding: 1px 0;*/
-}
+    padding: 1px 0;
+}*/
 
 li ul {
     margin-bottom: 0;
@@ -407,14 +407,14 @@ table thead th.sorted .sortoptions a.descending:hover {
 
 /* FORM DEFAULTS */
 
-input, textarea, select, .form-row p, form .button {
+/*input, textarea, select, .form-row p, form .button {
     margin: 2px 0;
     padding: 2px 3px;
     vertical-align: middle;
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
     font-weight: normal;
     font-size: 13px;
-}
+}*/
 
 textarea {
     vertical-align: top;
@@ -669,20 +669,20 @@ div.breadcrumbs a:focus, div.breadcrumbs a:hover {
 }
 
 .container textarea {
-    resize: none;
-    font-family: Consolas,"Liberation Mono",Courier,monospace;
-    height: 97%;
-    max-height: 97%;
-    width: 45%;
+  resize: none;
+  font-family: Consolas,"Liberation Mono",Courier,monospace;
+  height: 97%;
+  max-height: 97%;
+  width: 45%;
 }
 
 #preview {
-    height: 97%;
-    max-height: 97%;
-    border: 1px solid #eee;
-    overflow-y: scroll;
-    width: 55%;
-    padding: 10px;
+  height: 97%;
+  max-height: 97%;
+  border: 1px solid #eee;
+  overflow-y: scroll;
+  width: 55%;
+  padding: 10px;
 }
 
 
