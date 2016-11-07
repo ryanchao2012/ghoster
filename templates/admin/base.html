@@ -1,4 +1,4 @@
-{% load i18n admin_static ghoster_tags %}<!DOCTYPE html>
+{% load i18n admin_static ghoster_tags  %}<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
@@ -23,44 +23,20 @@
 <section class="wrapper">
     <!-- Container -->
     {% if not is_popup %}
-        {% block ghoster-title %}
-
-            <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
-                <!-- Header -->
-                <div class="navbar-header">
-                    <a href="#" class="navbar-brand">
-                        <div class="brand-logo">{% block branding %}{% endblock %}</div>
-                        <div class="brand-logo-collapsed">DJ</div>
-                    </a>
-                </div>
-                <div class="nav-wrapper">
-                    <ul class="nav navbar-nav">
-                        <li>
-                          {% block ghoster-search %}
-                              {# <form role="search" class="navbar-form"> #}
-                                  {# <div class="form-group has-feedback"> #}
-                                      {# <input type="text" placeholder="Type and hit Enter.." class="form-control"> #}
-                                      {# <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div> #}
-                                  {# </div> #}
-                                  {# <button type="submit" class="hidden btn btn-default">Submit</button> #}
-                              {# </form> #}
-                          {% endblock %}
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="offsidebar">
-                                <span class="oi oi-align-right"></span>
-{#                                <em class="fa fa-align-right"></em>#}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        {% endblock %}
         {% block nav-global %}
             <aside class="aside">
+                <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">
+
+
+                    <div class="navbar-header">
+                        <a href="#" class="navbar-brand">
+                            <div class="brand-logo">{% block branding %}{% endblock %}</div>
+                            <div class="brand-logo-collapsed">DJ</div>
+                        </a>
+                    </div>
+                </nav>
                 <nav class="sidebar">
+
                     <ul class="nav">
                         <li>
                             {% block usertools %}
@@ -123,7 +99,7 @@
 
                                                         <a href="{{ model.admin_url }}" data-toggle=""
                                                            class="no-submenu">
-                                                        <span class="item-text">{{ model.name }}</span>
+                                                            <span class="item-text">{{ model.name }}</span>
                                                         </a>
                                                     </li>
                                                 {% else %}
@@ -136,58 +112,98 @@
                             {% endif %}
                         {% endblock %}
                         <li class="nav-footer">
-                      <div class="nav-footer-divider"></div>
-                      <!-- START button group-->
-                      <div class="btn-group text-center">
-                         <button type="button" data-toggle="aside" data-title="aside" class="btn btn-link" data-original-title="" title="">
-                            <em class="fa fa-sign-out text-muted"></em>
-                         </button>
-                      </div>
-                      <!-- END button group-->
-                   </li>
+                            <div class="nav-footer-divider"></div>
+                            <!-- START button group-->
+                            <div class="btn-group text-center">
+                                <button type="button" data-toggle="aside" data-title="aside" class="btn btn-link"
+                                        data-original-title="" title="">
+                                    <em class="fa fa-sign-out text-muted"></em>
+                                </button>
+                            </div>
+                            <!-- END button group-->
+                        </li>
                     </ul>
                 </nav>
             </aside>
         {% endblock %}
 
-        {% block breadcrumbs %}
-            <div class="breadcrumbs">
-                <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-                {% if title %} &rsaquo; {{ title }}{% endif %}
-            </div>
-        {% endblock %}
+
+                        {% block ghoster-title %}
+
+
+                            <nav class="navbar navbar-default navbar-top navbar-fixed-top" style="margin-left: 250px;">
+                                <!-- Header -->
+                                <div class="nav-wrapper">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                          {% block ghoster-search %}
+{#                                              {% search_form cl %}#}
+{#                                               <form role="search" class="navbar-form">#}
+{#                                                   <div class="form-group has-feedback">#}
+{#                                                       <input type="text" placeholder="Type and hit Enter.." class="form-control">#}
+{#                                                       <div data-toggle="navbar-search-dismiss" class="fa fa-times form-control-feedback"></div>#}
+{#                                                   </div>#}
+{#                                                   <button type="submit" class="hidden btn btn-default">Submit</button>#}
+{#                                               </form>#}
+                                          {% endblock %}
+                                        </li>
+
+                                    </ul>
+                                {% block ghoster-sidebar %}
+
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li>
+                                            <a href="#" data-toggle="offsidebar">
+                                                <span class="oi oi-align-right"></span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    {% endblock %}
+                                </div>
+                            </nav>
+                        {% endblock %}
+
+
+                        {% block breadcrumbs %}
+                            <div class="breadcrumbs">
+                                <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+                                {% if title %} &rsaquo; {{ title }}{% endif %}
+                            </div>
+                        {% endblock %}
     {% endif %}
+    {##}
+        <section class="main-content">
+            {% block messages %}
+                {% if messages %}
+                    <ul class="messagelist">{% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+                    {% endfor %}</ul>
+                {% endif %}
+            {% endblock messages %}
 
-    <section class="main-content">
-        {% block messages %}
-            {% if messages %}
-                <ul class="messagelist">{% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
-                {% endfor %}</ul>
-            {% endif %}
-        {% endblock messages %}
-
-        <!-- Content -->
-        <div id="content" class="{% block coltype %}colM{% endblock %}">
-            {% block pretitle %}{% endblock %}
-            {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
-            {% block content %}
-                {% block object-tools %}{% endblock %}
-                {{ content }}
-            {% endblock %}
-            {% block sidebar %}{% endblock %}
-            <br class="clear"/>
-        </div>
-        <!-- END Content -->
-
-        {% block footer %}
-            <div id="footer">
-                {{ base_media.js }}
-                <script>var $j = jQuery.noConflict(true);</script>
+            <!-- Content -->
+            <div id="content" class="{% block coltype %}colM{% endblock %}">
+                {% block pretitle %}{% endblock %}
+                {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+                {% block content %}
+                    {% block object-tools %}{% endblock %}
+                    {{ content }}
+                {% endblock %}
+                {% block sidebar %}{% endblock %}
+                <br class="clear"/>
             </div>
-        {% endblock %}
-        <!-- END Container -->
-    </section>
+            <!-- END Content -->
+
+            {% block footer %}
+                <div id="footer">
+                    {{ base_media.js }}
+                    <script>var $j = $.noConflict(true);</script>
+                </div>
+            {% endblock %}
+            <!-- END Container -->
+        </section>
+
 </section>
 </body>
 </html>
