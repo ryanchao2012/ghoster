@@ -124,3 +124,38 @@
 </div>
 </form></div>
 {% endblock %}
+
+
+{% block footer %}
+<script src="{% static "admin/vendor/jquery/jquery.min.js" %}"></script>
+<script src="{% static "admin/vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+<!-- Plugins-->
+<script src="{% static "admin/vendor/chosen/chosen.jquery.min.js" %}"></script>
+<script src="{% static "admin/vendor/slider/js/bootstrap-slider.js" %}"></script>
+<script src="{% static "admin/vendor/filestyle/bootstrap-filestyle.min.js" %}"></script>
+<!-- Animo-->
+<script src="{% static "admin/vendor/animo/animo.min.js" %}"></script>
+<!-- Sparklines-->
+<script src="{% static "admin/vendor/sparklines/jquery.sparkline.min.js" %}"></script>
+<!-- Slimscroll-->
+<script src="{% static "admin/vendor/slimscroll/jquery.slimscroll.min.js" %}"></script>
+<!-- START Page Custom Script-->
+<!-- Markdown Area Codemirror and dependencies -->
+<script src="{% static "admin/vendor/codemirror/lib/codemirror.js" %}"></script>
+<script src="{% static "admin/vendor/codemirror/addon/mode/overlay.js" %}"></script>
+<script src="{% static "admin/vendor/codemirror/mode/markdown/markdown.js" %}"></script>
+<script src="{% static "admin/vendor/codemirror/mode/xml/xml.js" %}"></script>
+<script src="{% static "admin/vendor/codemirror/mode/gfm/gfm.js" %}"></script>
+<script src="{% static "admin/vendor/marked/marked.js" %}"></script>
+<!-- MomentJs and Datepicker-->
+<script src="{% static "admin/vendor/moment/min/moment-with-langs.min.js" %}"></script>
+<script src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+<!-- Tags input-->
+<script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>
+<!-- Input Mask-->
+<script src="{% static "admin/vendor/inputmask/jquery.inputmask.bundle.min.js" %}"></script>
+<!-- END Page Custom Script-->
+<!-- App Main-->
+<script src="{% static "admin/js/app.js"  %}"></script>
+
+{% endblock %}
