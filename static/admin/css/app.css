@@ -75,9 +75,15 @@ hr {
 }
 .form-control,
 .input-group-addon {
+  /*border: none;*/
   border-color: #dbd9d9;
 }
 .form-control {
+  padding: 0px;
+  padding-top: 10px;
+  /*margin-top: 6px;*/
+  font-size: 40px;
+  color: #3c383b;
   box-shadow: 0 0 0 #000 !important;
 }
 .input-group-addon {
