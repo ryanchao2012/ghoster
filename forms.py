@@ -1,4 +1,7 @@
 from django import forms
+from .models import Post
+from django.contrib.admin.helpers import AdminForm
+from django.contrib.admin.widgets import AdminSplitDateTime
 
 class BaseMadiaWidget(forms.TextInput):
     class Media:
@@ -6,11 +9,10 @@ class BaseMadiaWidget(forms.TextInput):
             'all': (
                     'admin/css/bootstrap.css',
                     'open-iconic/font/css/open-iconic-bootstrap.css',
-                    'admin/vendor/fontawesome/css/font-awesome.min.css',
                     'admin/vendor/animo/animate+animo.css',
                     'admin/vendor/csspinner/csspinner.min.css',
-                    'admin/css/app.css',
                     'admin/css/base.css',
+                    'admin/css/app.css',
                     )
         }
         js = (
@@ -22,3 +24,29 @@ class BaseMadiaWidget(forms.TextInput):
               'admin/js/app.js'
               )
 
+
+class GhosterPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = []
+        widgets = {
+            'date': AdminSplitDateTime(),
+        }
+
+
+class GhosterContentForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['content']
+
+class GhosterMetaForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ['content']
+        widgets = {
+            'date': AdminSplitDateTime(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(GhosterMetaForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({'class': 'form-control'})
