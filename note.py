@@ -39,3 +39,28 @@ class PersonAdmin(admin.ModelAdmin):
     def get_changelist_form(self, request, **kwargs):
         return PersonChangeListForm
 
+
+
+
+
+'''
+# compilemessages
+
+django-admin compilemessages
+Compiles .po files created by makemessages to .mo files for use with the built-in gettext support. 
+
+---------------------------------------------------------------------------------------------------
+
+# makemessages
+
+django-admin makemessages
+Runs over the entire source tree of the current directory and pulls out all strings 
+marked for translation. It creates (or updates) a message file in the conf/locale (in the Django tree) 
+or locale (for project and application) directory. After making changes to the messages files 
+you need to compile them with compilemessages for use with the builtin gettext support. 
+See the i18n documentation for details.
+'''
+
+
+
+
