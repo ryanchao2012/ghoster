@@ -10,6 +10,7 @@ class BaseMadiaWidget(forms.TextInput):
                     'admin/css/bootstrap.css',
                     'open-iconic/font/css/open-iconic-bootstrap.css',
                     'admin/vendor/animo/animate+animo.css',
+                    'admin/vendor/fontawesome/css/font-awesome.min.css',
                     'admin/vendor/csspinner/csspinner.min.css',
                     'admin/css/base.css',
                     'admin/css/app.css',
