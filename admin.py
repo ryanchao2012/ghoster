@@ -1,16 +1,15 @@
 from django.contrib import admin
-from .models import Post, Editor, Category, Menu, Page, Tag
+from .models import Post, Editor, Category, Menu, Page
 
 from django.forms import CheckboxSelectMultiple
 from django.db import models
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'editor', 'image_thumb', 'page', 'category', 'date')
+    list_display = ('short_title', 'editor', 'image_thumb', 'page', 'category', 'date', 'publish')
+    list_editable = ('page', 'category', 'publish')
     prepopulated_fields = {"slug": ("title",)}
-    list_filter = ('editor', 'tag')
-    search_fields = ('tag__name', 'editor__name',)
-    raw_id_fields = ('tag',)
-    change_form_template = 'admin/ghoster_change_form2.html'
-    add_form_template = 'admin/ghoster_change_form2.html'
+    search_fields = ('tags', 'editor__name',)
+    change_form_template = 'admin/ghoster_change_form.html'
+    add_form_template = 'admin/ghoster_change_form.html'
 
 class EditorAdmin(admin.ModelAdmin):
     list_display = ('name',)
@@ -21,10 +20,6 @@ class MenuAdmin(admin.ModelAdmin):
 class PageAdmin(admin.ModelAdmin):
     list_display = ('title', 'menu')
 
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-
-
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
@@ -33,7 +28,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(Tag, TagAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Editor, EditorAdmin)
 admin.site.register(Category, CategoryAdmin)

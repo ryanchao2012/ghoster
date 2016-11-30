@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import permalink
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
-
+from taggit.managers import TaggableManager
 from datetime import datetime
 # Create your models here.
 
@@ -11,6 +11,8 @@ from datetime import datetime
 class Editor(models.Model):
     name = models.CharField(max_length = 31)
     brief = models.CharField(max_length = 255, blank = True)
+    fblink = models.CharField(max_length = 1023, blank= True)
+    twlink = models.CharField(max_length = 1023, blank= True)
 
     def __str__(self):
         return '{}'.format(self.name)
@@ -53,18 +55,19 @@ class Page(models.Model):
         verbose_name_plural = verbose_name
 
 
-class Tag(models.Model):
-    name = models.CharField(max_length=31)
-
-    def __str__(self):
-        return '{}'.format(self.name)
-
-    class Meta:
-        verbose_name = _('TAG')
-        verbose_name_plural = verbose_name
+# class Tag(models.Model):
+#     name = models.CharField(max_length=31)
+#
+#     def __str__(self):
+#         return '{}'.format(self.name)
+#
+#     class Meta:
+#         verbose_name = _('TAG')
+#         verbose_name_plural = verbose_name
 
 
 class Post(models.Model):
+    publish = models.BooleanField(default=False)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, allow_unicode=True)
     content = models.TextField()
@@ -73,12 +76,16 @@ class Post(models.Model):
     category = models.ForeignKey(Category, default=1)
     page = models.ForeignKey(Page, default=1)
     date = models.DateTimeField(default=datetime.now)
-    tag = models.ManyToManyField(Tag, blank=True)
+    viewers = models.IntegerField(default=0)
+    tags = TaggableManager(blank=True)
 
     def image_thumb(self):
-        return '<img src="%s" height="100" />' % (self.thumbnail)
+        return '<img src="%s" height="50" />' % (self.thumbnail)
 
     image_thumb.allow_tags = True
+
+    def short_title(self):
+        return '{}'.format(self.title[:20] + ' ...')
 
     @permalink
     def get_absolute_url(self):
