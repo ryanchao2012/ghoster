@@ -17,12 +17,12 @@
 </head>
 {% load i18n %}
 
-<body class="navbar-fixed sidebar-nav fixed-nav"
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}navbar-fixed sidebar-nav fixed-nav{% endblock %}"
       data-admin-utc-offset="{% now "Z" %}">
 
+      {% if not is_popup %}
+          {% block nav-global %}
       <header class="navbar">
-        {% if not is_popup %}
-            {% block nav-global %}
             <div class="container-fluid">
                 <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
                 <a class="navbar-brand" href="#">{% block branding %}{% endblock %}</a>
@@ -31,7 +31,9 @@
                         <a class="nav-link navbar-toggler layout-toggler" href="#">&#9776;</a>
                     </li>
                 </ul>
+                {% block ghoster-search %}{% endblock %}
                 <ul class="nav navbar-nav pull-right hidden-md-down">
+                  {% block object-tools %}{% endblock %}
                     <li class="nav-item">
                         <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
                     </li>
@@ -114,67 +116,51 @@
     {% block ghoster-cms %}
         {% if not is_popup %}
             {% block ghoster-title %}
-                <nav class="navbar navbar-default navbar-top navbar-fixed-top" style="margin-left: 250px;">
-                    <!-- Header -->
-                    <div class="nav-wrapper">
-                        <div class="nav navbar-nav">
-                                {% block ghoster-search %}{% endblock %}
-                        </div>
 
+                                <assets class="aside-menu">
+                                  {% block ghoster-sidebar %}{% endblock %}
+                                </assets>
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    {% block object-tools %}{% endblock %}
-                                </li>
-                                <li>
-                                    <a href="#" data-toggle="offsidebar">
-                                        <span class="oi oi-align-right"></span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                    </div>
-                </nav>
-                <!-- START Off Sidebar (right)-->
-                <aside class="offsidebar">
-                {% block ghoster-sidebar %}{% endblock %}
-                 </aside>
-                <!-- END Off Sidebar (right)-->
             {% endblock %}
 
 
-            {% block breadcrumbs %}
-                <div class="breadcrumbs">
-                    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-                    {% if title %} &rsaquo; {{ title }}{% endif %}
-                </div>
-            {% endblock %}
-        {% endif %}
+        <main class="main">
 
-        <section class="main-content">
-            {% block messages %}
-                {% if messages %}
-                    <ul class="messagelist">{% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
-                    {% endfor %}</ul>
+
+          {% block messages %}
+              {% if messages %}
+                  <div class="card-inverse card-danger">{% for message in messages %}
+                      <div class="card-block"><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li></div>
+                  {% endfor %}</div>
+              {% endif %}
+          {% endblock messages %}
+
+
+          {% block breadcrumbs %}
+                    <ol class="breadcrumb">
+                      <small><li>
+                      <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+                      {% if title %} &rsaquo; {{ title }}{% endif %}
+                    </small></li>
+                            </ol>
+                    {% endblock %}
                 {% endif %}
-            {% endblock messages %}
+
+
 
             <!-- Content -->
-            <div id="content" class="{% block coltype %}colM{% endblock %}">
-                {% block pretitle %}{% endblock %}
-                {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+            <div class="container-fluid">
+
                 {% block content %}
-{#                    {% block object-tools %}{% endblock %}#}
                     {{ content }}
                 {% endblock %}
                 {% block sidebar %}{% endblock %}
-                <br class="clear"/>
             </div>
             <!-- END Content -->
+          </main>
 
             {% block footer %}
-                <div id="footer">
+                <footer class="footer">
             <!-- Bootstrap and necessary plugins -->
             <script src="{% static "admin/assets/js/libs/jquery.min.js" %}"></script>
             <script src="{% static "admin/assets/js/libs/tether.min.js" %}"></script>
@@ -186,11 +172,10 @@
             <script src="{% static "admin/assets/js/app.js" %}"></script>
 
 
-                </div>
+          </footer>
             {% endblock %}
             <!-- END Container -->
-        </section>
+
     {% endblock %}
-</section>
 </body>
 </html>

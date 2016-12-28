@@ -1,11 +1,10 @@
 {% load i18n admin_static %} {% if cl.search_fields %}
-    <div id="toolbar">
-        <form id="changelist-search" method="get">
-            <div class="input-group">
+        <form id="changelist-search" class="form-inline pull-xs-left p-x-2" method="get">
                 <!-- DIV needed for valid HTML -->
-                <input type="text" class="form-control" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar"/>
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default" value="{% trans 'Search' %}"/>
+                <button type="submit" class="btn btn-link btn-xs" value="{% trans 'Search' %}"/>
+                <i class="fa fa-search"></i>
+              </button>
+                <input type="text" class="form-control" name="{{ search_var }}" value="{{ cl.query }}" placeholder="Search" id="searchbar"/>
                     <span class="oi oi-magnifying-glass"></span>
                     {% if show_result_count %}
                         <span class="small quiet">
@@ -27,10 +26,7 @@
                             <input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}"/>
                         {% endif %}
                     {% endfor %}
-                </span>
-            </div>
         </form>
-    </div>
     <script type="text/javascript">
         document.getElementById("searchbar").focus();
     </script>

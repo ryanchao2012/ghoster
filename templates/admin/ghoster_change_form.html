@@ -1,19 +1,10 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_urls admin_static admin_modify ghoster_tags %}
 {% block extrahead %}{{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
+  <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"
+  >
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
-    <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"
-    >
-    <link rel="stylesheet" href="{% static "admin/vendor/chosen/chosen.min.css" %}"
-    >
-    <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"
-    >
-    <link rel="stylesheet" href="{% static "admin/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" %}"
-    >
-    <script src="{% static "admin/vendor/modernizr/modernizr.js" %}" type="application/javascript"></script>
-    <!-- FastClick for mobiles-->
-    <script src="{% static "admin/vendor/fastclick/fastclick.js" %}" type="application/javascript"></script>
-    {{ media }}
 {% endblock %}
 
 
@@ -93,18 +84,22 @@
 
 
 {% block footer %}
-    <script src="{% static "admin/vendor/jquery/jquery.min.js" %}"></script>
-    <script src="{% static "admin/vendor/bootstrap/js/bootstrap.min.js" %}"></script>
-    <!-- Plugins-->
-    <script src="{% static "admin/vendor/chosen/chosen.jquery.min.js" %}"></script>
-    <script src="{% static "admin/vendor/slider/js/bootstrap-slider.js" %}"></script>
-    <script src="{% static "admin/vendor/filestyle/bootstrap-filestyle.min.js" %}"></script>
-    <!-- Animo-->
-    <script src="{% static "admin/vendor/animo/animo.min.js" %}"></script>
-    <!-- Sparklines-->
-    <script src="{% static "admin/vendor/sparklines/jquery.sparkline.min.js" %}"></script>
-    <!-- Slimscroll-->
-    <script src="{% static "admin/vendor/slimscroll/jquery.slimscroll.min.js" %}"></script>
+
+<script src="{% static "admin/assets/js/libs/jquery.min.js" %}"></script>
+<script src="{% static "admin/assets/js/libs/tether.min.js" %}"></script>
+<script src="{% static "admin/assets/js/libs/bootstrap.min.js" %}"></script>
+<script src="{% static "admin/assets/js/libs/pace.min.js" %}"></script>
+<!-- Plugins and scripts required by all views -->
+<script src="{% static "admin/assets/js/libs/Chart.min.js" %}"></script>
+<!-- GenesisUI main scripts -->
+<script src="{% static "admin/assets/js/app.js" %}"></script>
+<!-- Plugins and scripts required by this views -->
+<script src="{% static "admin/assets/js/libs/jquery.maskedinput.min.js" %}"></script>
+<script src="{% static "admin/assets/js/libs/moment.min.js" %}"></script>
+<script src="{% static "admin/assets/js/libs/select2.min.js" %}"></script>
+<script src="{% static "admin/assets/js/libs/daterangepicker.min.js" %}"></script>
+<!-- Custom scripts required by this view -->
+<script src="{% static "admin/assets/js/views/forms.js" %}"></script>
     <!-- START Page Custom Script-->
     <!-- Markdown Area Codemirror and dependencies -->
     <script src="{% static "admin/vendor/codemirror/lib/codemirror.js" %}"></script>
@@ -113,16 +108,9 @@
     <script src="{% static "admin/vendor/codemirror/mode/xml/xml.js" %}"></script>
     <script src="{% static "admin/vendor/codemirror/mode/gfm/gfm.js" %}"></script>
     <script src="{% static "admin/vendor/marked/marked.js" %}"></script>
-    <!-- MomentJs and Datepicker-->
-    <script src="{% static "admin/vendor/moment/min/moment-with-langs.min.js" %}"></script>
-    <script src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
-    <!-- Tags input-->
-    <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>
-    <!-- Input Mask-->
-    <script src="{% static "admin/vendor/inputmask/jquery.inputmask.bundle.min.js" %}"></script>
-    <!-- END Page Custom Script-->
+
     <!-- App Main-->
-    <script src="{% static "admin/js/app.js" %}"></script>
+    <script src="{% static "admin/js/app-markdownarea.js" %}"></script>
     <script type="text/javascript">
         var textarea = document.getElementById('id_content');
         textarea.setAttribute('data-uk-markdownarea', '{mode:"split"}');

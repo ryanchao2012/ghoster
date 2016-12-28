@@ -1,19 +1,14 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static %}
 {% block extrastyle %}{{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}"/>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{% static "admin/vendor/jquery/jquery.js" %}"><\/script>')</script>
-
-    <script src="{% static "admin/vendor/jquery-ui/ui/jquery-ui.js" %}"></script>
-    <script src="{% static "admin/vendor/jquery-ui/ui/minified/jquery-ui.min.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "admin/vendor/BigVideo/css/bigvideo.css" %}"/>
+    <script src="{% static "admin/assets/js/libs/jquery.min.js" %}"></script>
 
     <script src="//vjs.zencdn.net/4.3/video.js"></script>
     <script src="{% static "admin/vendor/BigVideo/lib/bigvideo.js" %}"></script>
-    {{ form.media }}
 {% endblock %}
 
-{% block bodyclass %}{{ block.super }} login{% endblock %}
+{% block bodyclass %}sidebar-nav aside-menu-open {% endblock %}
 
 {% block usertools %}{% endblock %}
 
@@ -25,44 +20,49 @@
 
 {% block content %}
 
-    {% if form.errors and not form.non_field_errors %}
-        <p class="errornote">
-            {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}
-                {% trans "Please correct the errors below." %}{% endif %}
-        </p>
-    {% endif %}
 
-    {% if form.non_field_errors %}
-        {% for error in form.non_field_errors %}
-            <p class="errornote">
-                {{ error }}
-            </p>
-        {% endfor %}
-    {% endif %}
 
-    <div style="height: auto; padding: 50px 0;" class="row row-table">
-        <div class="col-lg-3 col-md-6 col-sm-8 col-xs-12 align-middle">
+
+<div class="card-group vamiddle">
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+              {% if form.errors and not form.non_field_errors %}
+              <div class="btn btn-danger-outline btn-sm col-xl-12 m-b-2">
+                      {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}
+                          {% trans "Please correct the errors below." %}{% endif %}
+                        </div>
+              {% endif %}
+              {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                  <div class="btn btn-danger-outline btn-sm col-xl-12 m-b-2">
+                          {{ error }}
+                        </div>
+                  {% endfor %}
+              {% endif %}
             <!-- START panel-->
-            <div data-toggle="play-animation" data-play="fadeInUp" data-offset="0"
-                 class="panel panel-default panel-flat">
-                <p class="text-center mb-lg">
+            <div class="card col-xl-12 p-a-2">
+            <div class="card-block">
+              <h2>Login</h2>
+              <p class="text-muted">Sign In to your account</p>
                     {% if user.is_authenticated %}
-                        <p class="errornote">
+                        <div class="btn btn-danger">
                             {% blocktrans trimmed %}
                                 You are authenticated as {{ username }}, but are not authorized to
                                 access this page. Would you like to login to a different account?
                             {% endblocktrans %}
-                        </p>
+                        </div>
                     {% endif %}
-                </p>
-                <div class="panel-body">
                     <form role="form" class="mb-lg" action="{{ app_path }}" method="post"
                           id="login-form">{% csrf_token %}
-                        <div class="form-group has-feedback">
-                            <input id="id_username" name="username" type="text" class="form-control fc">
+                        <div class="input-group m-b-1">
+                          <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input id="id_username" name="username" type="text" class="form-control">
                         </div>
-                        <div class="form-group has-feedback">
-                            <input id="id_password" name="password" type="password" class="form-control fc">
+                        <div class="input-group m-b-2">
+                          <span class="input-group-addon"><i class="icon-lock"></i></span>
+                            <input id="id_password" name="password" type="password" class="form-control">
                         </div>
                         <div class="clearfix">
                             <div class="checkbox c-checkbox pull-left mt0">
@@ -79,8 +79,9 @@
                         </div>
                         <button type="submit" class="btn btn-block btn-primary">Login</button>
                     </form>
-                </div>
             </div>
+          </div>
+          </div>
             <!-- END panel-->
         </div>
 
@@ -91,7 +92,27 @@
                 BV.show("{% static "admin/img/earth.mp4" %}", {ambient: true});
             });
         </script>
+        <script>
+        function verticalAlignMiddle()
+        {
+            var bodyHeight = $(window).height();
+            var formHeight = $('.vamiddle').height();
+            var marginTop = (bodyHeight / 2) - (formHeight / 2);
+            if (marginTop > -0)
+            {
+                $('.vamiddle').css('margin-top', marginTop);
+            }
+        }
+        $(document).ready(function()
+        {
+            verticalAlignMiddle();
+        });
+        $(window).bind('resize', verticalAlignMiddle);
+        </script>
+
+
     </div>
 
 {% endblock %}
 {% block ghoster-title %}{% endblock %}
+{% block footer %}{% endblock %}
