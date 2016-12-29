@@ -129,8 +129,8 @@
 
           {% block messages %}
               {% if messages %}
-                  <div class="card-inverse card-danger">{% for message in messages %}
-                      <div class="card-block"><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li></div>
+                  <div class="card card-inverse card-success">{% for message in messages %}
+                      <div class="p-y-h p-x-2"><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li></div>
                   {% endfor %}</div>
               {% endif %}
           {% endblock messages %}
