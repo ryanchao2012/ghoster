@@ -34,45 +34,100 @@
 {% endblock %}
 
 {% block object-tools %}
-    <li>
+    <li class="nav-item">
         <input type="submit" value="儲存" class="btn btn-primary btn-sm mt15" name="_continue">
     </li>
     {% if change %}{% if not is_popup %}
         {% block object-tools-items %}
-            <li>
+            <li class="nav-item">
                 {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
                 <a href="{% add_preserved_filters history_url %}"
                    class="historylink">{% trans "History" %}</a>
             </li>
             {% if has_absolute_url %}
-                <li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a>
+                <li class="nav-item"><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a>
                 </li>{% endif %}
         {% endblock %}
     {% endif %}{% endif %}
 {% endblock %}
 
 {% block ghoster-search %}
-    <div class="form-group">
         {{ gh.meta.title }}
-    </div>
 {% endblock %}
 
 
 
 {% block ghoster-sidebar %}
 
-    <nav>
-    <ul class="nav">
-        <li class="p">{{ gh.meta.slug }}</li>
-        <li class="p">{{ gh.meta.thumbnail }}</li>
-        <li class="p">{{ gh.meta.page }}</li>
-        <li class="p">{{ gh.meta.category }}</li>
-        <li class="p">{{ gh.meta.editor }}</li>
-        <li class="p">{{ gh.meta.date }}</li>
-        <li class="p">{{ gh.meta.tags }}</li>
-        <li class="p">{{ gh.meta.viewers }}</li>
-    </ul>
-    </nav>
+
+<div class="tab-content">
+            <div class="tab-pane active" id="timeline" role="tabpanel">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>slug</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-warning m-a-0 p-y-1">
+                    <div>{{ gh.meta.slug }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>thumbnail</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+                    <div>{{ gh.meta.thumbnail }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>page</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+                    <div>{{ gh.meta.page }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>category</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+                    <div>{{ gh.meta.category }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>editor</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+                    <div>{{ gh.meta.editor }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>date</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+                    <div>{{ gh.meta.date }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>tags</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+                    <div>{{ gh.meta.tags }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>viewers</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+                    <div>{{ gh.meta.viewers }}</div>
+                </div>
+                <hr class="m-x-1 m-y-0">
+            </div>
+        </div>
 {% endblock %}
 
 

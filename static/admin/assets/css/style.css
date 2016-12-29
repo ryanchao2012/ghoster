@@ -13290,7 +13290,8 @@ body.top-nav .main {
 body.aside-menu-open .main {
   padding-right: 250px; }
 body.aside-menu-open .aside-menu {
-  right: 0; }
+  right: 0;
+  overflow: scroll;}
 body.aside-menu-open .footer {
   right: 250px; }
 body.aside-menu-open.aside-menu-off-canvas .main {
