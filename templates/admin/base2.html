@@ -119,13 +119,13 @@
         {#  {% endif %}#}
         {#    {% block ghoster-cms %}#}
         {#        {% if not is_popup %}#}
-{#        {% block ghoster-title %}#}
+        {#        {% block ghoster-title %}#}
 
-            <assets class="aside-menu">
-                {% block ghoster-sidebar %}{% endblock %}
-            </assets>
+        <assets class="aside-menu">
+            {% block ghoster-sidebar %}{% endblock %}
+        </assets>
 
-{#        {% endblock %}#}
+        {#        {% endblock %}#}
 
 
         <main class="main">
@@ -133,8 +133,8 @@
 
         {% block messages %}
             {% if messages %}
-                <div class="card-inverse card-danger">{% for message in messages %}
-                    <div class="card-block">
+                <div class="card card-inverse card-success">{% for message in messages %}
+                    <div class="p-y-h p-x-2">
                         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
                     </div>
                 {% endfor %}</div>
