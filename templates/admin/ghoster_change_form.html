@@ -28,7 +28,7 @@
     {% render_post_form adminform.form.instance as gh %}
     <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
           id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
-        <div class="wrapper">{{ block.super }}</div>
+                <div class="wrapper">{{ block.super }}</div>
     </form>
 
 {% endblock %}
@@ -51,7 +51,7 @@
     {% endif %}{% endif %}
 {% endblock %}
 
-{% block ghoster-search %}
+{% block ghoster-topbar %}
         {{ gh.meta.title }}
 {% endblock %}
 
