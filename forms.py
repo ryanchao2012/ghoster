@@ -26,13 +26,13 @@ class BaseMadiaWidget(forms.TextInput):
               )
 
 
-class GhosterPostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        exclude = []
-        widgets = {
-            'date': AdminSplitDateTime(),
-        }
+# class GhosterPostForm(forms.ModelForm):
+#     class Meta:
+#         model = Post
+#         exclude = []
+#         widgets = {
+#             'date': AdminSplitDateTime(),
+#         }
 
 
 class GhosterContentForm(forms.ModelForm):
@@ -50,4 +50,4 @@ class GhosterMetaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(GhosterMetaForm, self).__init__(*args, **kwargs)
-        self.fields['title'].widget.attrs.update({'class': 'form-control'})
+        self.fields['title'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Untitled'})
