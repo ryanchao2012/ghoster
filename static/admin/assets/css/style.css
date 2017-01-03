@@ -1576,7 +1576,7 @@ pre {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   color: #55595c;
   background-color: #fff;
@@ -13360,10 +13360,11 @@ body:not(.top-nav) .sidebar {
       margin: 0; }
       body:not(.top-nav) .sidebar ul.nav li.nav-item ul li {
         padding: 0;
+        margin-left: 5px;
         list-style: none; }
     body:not(.top-nav) .sidebar ul.nav li.nav-item a.nav-link {
       display: block;
-      padding: 0.55rem 1rem;
+      padding: 0.55rem 1.5rem 0.55rem 1rem;
       font-size: 12px;
       font-weight: 400;
       line-height: 1.3125rem;

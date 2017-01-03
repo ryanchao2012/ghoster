@@ -8,7 +8,7 @@
     <script src="{% static "admin/vendor/BigVideo/lib/bigvideo.js" %}"></script>
 {% endblock %}
 
-{% block bodyclass %}sidebar-nav aside-menu-open {% endblock %}
+{% block bodyclass %}{% endblock %}
 
 {% block usertools %}{% endblock %}
 
@@ -23,10 +23,9 @@
 
 
 
-<div class="card-group vamiddle">
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-5 center-block pull-xs-none">
 
               {% if form.errors and not form.non_field_errors %}
               <div class="btn btn-danger-outline btn-sm col-xl-12 m-b-2">
@@ -42,8 +41,9 @@
                   {% endfor %}
               {% endif %}
             <!-- START panel-->
-            <div class="card col-xl-12 p-a-2">
-            <div class="card-block">
+            <div class="card vamiddle">
+
+            <div class="card-block p-a-2">
               <h2>Login</h2>
               <p class="text-muted">Sign In to your account</p>
                     {% if user.is_authenticated %}
@@ -81,10 +81,10 @@
                     </form>
             </div>
           </div>
-          </div>
             <!-- END panel-->
         </div>
-
+    </div>
+    
         <script>
             $(function () {
                 var BV = new $.BigVideo();
@@ -111,7 +111,7 @@
         </script>
 
 
-    </div>
+
 
 {% endblock %}
 {% block ghoster-title %}{% endblock %}
