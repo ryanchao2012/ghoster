@@ -4,6 +4,12 @@
   <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
   <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"
   >
+  <style>
+.from-title .form-control {
+  width: 100% !important;
+  font-size: 1.5rem !important;
+}
+  </style>
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {% endblock %}
 
@@ -57,7 +63,7 @@
 {% endblock %}
 
 {% block ghoster-topbar %}
-    <div class="form-inline pull-xs-left p-x-2 ">
+    <div class="form-inline from-title pull-xs-left p-x-2 col-md-8">
         {{ gh.meta.title }}
     </div>
 {% endblock %}

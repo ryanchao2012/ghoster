@@ -423,7 +423,7 @@ h4 {
   font-size: 1.5rem; }
 
 h5 {
-  font-size: 1.25rem; }
+  font-size: 1.25rem !important; }
 
 h6 {
   font-size: 1rem; }
@@ -1576,7 +1576,7 @@ pre {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
-  font-size: 1.5rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   color: #55595c;
   background-color: #fff;
@@ -13360,7 +13360,7 @@ body:not(.top-nav) .sidebar {
       margin: 0; }
       body:not(.top-nav) .sidebar ul.nav li.nav-item ul li {
         padding: 0;
-        margin-left: 5px;
+        margin-left: 10px;
         list-style: none; }
     body:not(.top-nav) .sidebar ul.nav li.nav-item a.nav-link {
       display: block;
