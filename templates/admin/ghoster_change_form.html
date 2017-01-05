@@ -2,15 +2,8 @@
 {% load i18n admin_urls admin_static admin_modify ghoster_tags %}
 {% block extrahead %}{{ block.super }}
   <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
-  <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"
-  >
-  <style>
-.form-title .form-control {
-  width: 100% !important;
-  font-size: 1.5rem !important;
-}
-  </style>
-    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+  <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
+  <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {% endblock %}
 
 
