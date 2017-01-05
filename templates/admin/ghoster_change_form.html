@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"
   >
   <style>
-.from-title .form-control {
+.form-title .form-control {
   width: 100% !important;
   font-size: 1.5rem !important;
 }
@@ -63,7 +63,7 @@
 {% endblock %}
 
 {% block ghoster-topbar %}
-    <div class="form-inline from-title pull-xs-left p-x-2 col-md-6">
+    <div class="form-inline form-title pull-xs-left p-x-2 col-md-6">
         {{ gh.meta.title }}
     </div>
 {% endblock %}
