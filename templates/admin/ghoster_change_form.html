@@ -81,6 +81,10 @@
                 </div>
                 <hr class="transparent m-x-1 m-y-0">
                 <div class="callout callout-danger m-a-0 p-y-1">
+
+                    <button type="button" class="btn btn-primary btn-block"><i class="fa fa-cloud-upload fa-lg"></i> 為選擇任何檔案</button>
+
+
                     <div>{{ gh.meta.cover }}</div>
                 </div>
                 <hr class="transparent m-x-1 m-y-0">
@@ -113,6 +117,14 @@
                 </div>
                 <hr class="transparent m-x-1 m-y-0">
                 <div class="callout callout-danger m-a-0 p-y-1">
+
+                  {# data #}
+                  <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input name="daterange" class="form-control" type="text">
+                                        </div>
+
+
                     <div>{{ gh.meta.date }}</div>
                 </div>
                 <hr class="transparent m-x-1 m-y-0">
@@ -121,6 +133,19 @@
                 </div>
                 <hr class="transparent m-x-1 m-y-0">
                 <div class="callout callout-danger m-a-0 p-y-1">
+
+                   {# tag #}
+                  <div class="controls">
+                      <select id="select2-2" class="form-control" multiple>
+                          <option>Option 1</option>
+                          <option selected>Option 2</option>
+                          <option>Option 3</option>
+                          <option>Option 4</option>
+                          <option>Option 5</option>
+                      </select>
+                  </div>
+
+
                     <div>{{ gh.meta.tags }}</div>
                 </div>
                 <hr class="transparent m-x-1 m-y-0">
