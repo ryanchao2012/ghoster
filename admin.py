@@ -5,9 +5,10 @@ from django.forms import CheckboxSelectMultiple
 from django.db import models
 class PostAdmin(admin.ModelAdmin):
     list_display = ('short_title', 'editor', 'image_thumb', 'page', 'category', 'date', 'publish')
-    list_editable = ('page', 'category', 'publish')
+    # list_editable = ('page', 'category', 'publish')
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ('tags', 'editor__name',)
+    list_filter = ('page__title', 'editor__name')
     change_form_template = 'admin/ghoster_change_form.html'
     add_form_template = 'admin/ghoster_change_form.html'
 

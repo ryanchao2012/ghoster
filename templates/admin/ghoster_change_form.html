@@ -3,7 +3,7 @@
 {% block extrahead %}{{ block.super }}
   <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
   <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
-  <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {% endblock %}
 
 
@@ -131,6 +131,7 @@
                 <div class="callout callout-danger m-a-0 p-y-1">
                     <div>{{ gh.meta.viewers }}</div>
                 </div>
+
                 <hr class="m-x-1 m-y-0">
             </div>
         </div>
