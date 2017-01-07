@@ -68,12 +68,11 @@ form ul.inline li {
 /* ALIGNED FIELDSETS */
 
 .aligned label {
-    display: block;
-    padding: 4px 10px 0 0;
+    display: inline-block;
     float: left;
     width: 160px;
     word-wrap: break-word;
-    line-height: 1;
+    line-height: 2;
 }
 
 .aligned label:not(.vCheckboxLabel):after {
@@ -98,6 +97,7 @@ form ul.inline li {
 
 .aligned .form-row input {
     margin-bottom: 0;
+    width: auto;
 }
 
 .colMS .aligned .vLargeTextField, .colMS .aligned .vXMLLargeTextField {
