@@ -506,8 +506,7 @@ form .related-widget-wrapper ul {
 }
 .selectfilter, .vTextField, .vTimeField, .vDateField {
     width: auto;
-    height: 38px;
-    padding: 8px 14px;
+    padding: 10px 25px 10px 15px;
     font-size: 14px;
     line-height: 1.42857143;
     color: #919292;
