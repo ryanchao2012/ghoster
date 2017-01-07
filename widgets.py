@@ -36,8 +36,6 @@ class GhosterWidget(object):
         if not (value is True or value is False or value is None or value == ''):
             # Only add the 'value' attribute if a value is non-empty.
             final_attrs['value'] = force_text(value)
-        import inspect
-        print(inspect.stack())
         if 'id' in final_attrs:
             final_attrs.update({'class': 'switch-input'})
             return format_html('<label class="switch switch-icon switch-pill switch-primary"><input{} /><span class="switch-label" data-on="&#xF00C;" data-off="&#xF00D;"></span><span class="switch-handle"></span></label>', flatatt(final_attrs))
