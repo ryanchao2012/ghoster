@@ -2,3 +2,11 @@
     width: 100% !important;
     font-size: 1.5rem !important;
   }
+li.success a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+li.success a:hover {
+  color: #20a8d8;
+  text-decoration: underline;
+}
