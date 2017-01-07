@@ -1575,7 +1575,7 @@ pre {
 .form-control, .daterangepicker .input-mini, .input-group > .ui-select-bootstrap > input.ui-select-search.form-control, .input-group > .ui-select-bootstrap > input.ui-select-search.form-control.direction-up {
   display: block;
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   font-size: 0.875rem;
   line-height: 1.5;
   color: #55595c;
