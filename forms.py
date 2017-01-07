@@ -49,6 +49,7 @@ class GhosterMetaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(GhosterMetaForm, self).__init__(*args, **kwargs)
+        # print(self.fields['cover'].__dict__['widget'].template_with_initial)
         self.fields['title'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Untitled'})
         self.fields['slug'].widget.attrs.update({'class': 'form-control'})
         self.fields['thumbnail'].widget.attrs.update({'class': 'form-control'})

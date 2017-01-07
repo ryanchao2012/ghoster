@@ -65,13 +65,16 @@ class Page(models.Model):
 #         verbose_name = _('TAG')
 #         verbose_name_plural = verbose_name
 
-
+import os
+def content_file_name(instance, filename):
+    return '/'.join(['ghoster', instance.title, filename])
 class Post(models.Model):
     publish = models.BooleanField(default=False)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, allow_unicode=True)
     content = models.TextField()
     thumbnail = models.URLField(blank=True)
+    cover = models.ImageField(upload_to=content_file_name, blank=True)
     editor = models.ForeignKey(Editor, default=1)
     category = models.ForeignKey(Category, default=1)
     page = models.ForeignKey(Page, default=1)
@@ -79,8 +82,9 @@ class Post(models.Model):
     viewers = models.IntegerField(default=0)
     tags = TaggableManager(blank=True)
 
+
     def image_thumb(self):
-        return '<img src="%s" height="50" />' % (self.thumbnail)
+        return '<img src="%s" height="50" />' % (self.cover.url)
 
     image_thumb.allow_tags = True
 
