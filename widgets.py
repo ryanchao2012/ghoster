@@ -27,7 +27,7 @@ class GhTagInputWidget(TagWidget):
             final_attrs.update(attrs)
         super(GhTagInputWidget, self).__init__(attrs=final_attrs)
 
-class GhURLFieldWidget(ClearableFileInput):
+class GhFileFieldWidget(ClearableFileInput):
     template_default = (
         '<div class="btn btn-primary btn-block">'
         '<i class="fa fa-cloud-upload fa-lg">%(input)s</i>'
@@ -37,8 +37,8 @@ class GhURLFieldWidget(ClearableFileInput):
         '<img src="%(initial_url)s" width="200" /><br />'
         + template_default +
         '%(clear_template)s'
-        # '<p class="file-upload">%s</p>' % forms.ClearableFileInput.template_with_initial
     )
+
     template_with_clear = (
         '%s' % forms.ClearableFileInput.template_with_clear
     )
@@ -50,7 +50,7 @@ class GhURLFieldWidget(ClearableFileInput):
             'clear_template': '',
             'clear_checkbox_label': self.clear_checkbox_label,
         }
-        template = GhURLFieldWidget.template_default
+        template = GhFileFieldWidget.template_default
         substitutions['input'] = super(ClearableFileInput, self).render(name, value, attrs)
 
         if self.is_initial(value):
@@ -66,12 +66,18 @@ class GhURLFieldWidget(ClearableFileInput):
         return mark_safe(template % substitutions)
 
 class GhosterWidget(object):
+    template_slider = (
+        '<label class="switch switch-icon switch-pill switch-primary">'
+        '<input{} />'
+        '<span class="switch-label" data-on="&#xF00C;" data-off="&#xF00D;"></span>'
+        '<span class="switch-handle"></span></label>'
+    )
 
     @staticmethod
     def select_render(self, name, value, attrs=None):
         if value is None:
             value = ''
-        attrs.update({'class': 'form-control'}) #
+        attrs.update({'class': 'form-control'})
         final_attrs = self.build_attrs(attrs, name=name)
         output = [format_html('<select{}>', flatatt(final_attrs))]
         options = self.render_options([value])
@@ -89,7 +95,7 @@ class GhosterWidget(object):
         if not (value is True or value is False or value is None or value == ''):
             # Only add the 'value' attribute if a value is non-empty.
             final_attrs['value'] = force_text(value)
-        if 'id' in final_attrs:
+        if 'id' in final_attrs and 'name' in final_attrs:
             final_attrs.update({'class': 'switch-input'})
-            return format_html('<label class="switch switch-icon switch-pill switch-primary"><input{} /><span class="switch-label" data-on="&#xF00C;" data-off="&#xF00D;"></span><span class="switch-handle"></span></label>', flatatt(final_attrs))
+            return format_html(GhosterWidget.template_slider, flatatt(final_attrs))
         return format_html('<input{} />', flatatt(final_attrs))

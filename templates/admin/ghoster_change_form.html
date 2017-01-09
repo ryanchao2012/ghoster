@@ -1,11 +1,17 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_urls admin_static admin_modify ghoster_tags %}
 {% block extrahead %}{{ block.super }}
+<<<<<<< HEAD
   <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
   <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
   <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"/>
   <link rel="stylesheet" href="{% static "admin/vendor/datetimepicker/css/bootstrap-datetimepicker.css" %}"/>
 
+=======
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
+    <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
+    <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"/>
+>>>>>>> 08b31d1118ee548f794543da5002b90681868e99
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {% endblock %}
 
@@ -29,6 +35,10 @@
     {% endif %}
 
     {{ gh.content }}
+
+    {#    <script>#}
+    {#    #}
+    {#    </script>#}
 {% endblock %}
 
 {% block ghoster-cms %}
@@ -36,6 +46,7 @@
     <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
           id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
         <div class="wrapper">{{ block.super }}</div>
+
     </form>
 
 {% endblock %}
@@ -86,8 +97,8 @@
 
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
-{#                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-cloud-upload fa-lg"></i> 未選擇任何檔案</button>#}
-            {{ gh.meta.cover }}
+                {#                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-cloud-upload fa-lg"></i> 未選擇任何檔案</button>#}
+                {{ gh.meta.cover }}
 
                   <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -126,39 +137,45 @@
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
 
+<<<<<<< HEAD
                   <div class="datetimepicker input-group date mb-lg">
                      <input type="text" class="form-control">
+=======
+
+                <div class="datetimepicker input-group date mb-lg">
+                    <input type="text" class="form-control">
+>>>>>>> 08b31d1118ee548f794543da5002b90681868e99
                      <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                      </span>
-                  </div>
-
-
-                    <div>{{ gh.meta.date }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>tags</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-
-                   {# tag #}
-
-                    <div>{{ gh.meta.tags }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>viewers</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-                    <div>{{ gh.meta.viewers }}</div>
                 </div>
 
-                <hr class="m-x-1 m-y-0">
+
+                <div>{{ gh.meta.date }}</div>
             </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>tags</b></small>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+
+                {# tag #}
+
+                <div>{{ gh.meta.tags }}</div>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>viewers</b></small>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+                <div>{{ gh.meta.viewers }}</div>
+            </div>
+
+            <hr class="m-x-1 m-y-0">
         </div>
+    </div>
 {% endblock %}
 
 
@@ -197,11 +214,34 @@
     <script src="{% static "admin/vendor/codemirror/mode/gfm/gfm.js" %}"></script>
     <script src="{% static "admin/vendor/marked/marked.js" %}"></script>
 
+
+    <script>
+        $(function () {
+            var title = $("input#id_title"),
+                slug = $("input#id_slug");
+            title.on('input', function (e) {
+                function slugify(text) {
+                    return text.toString().toLowerCase()
+                            .replace(/\s+/g, '-')           // Replace spaces with -
+                            .replace(/[^\u0100-\uFFFF\w\-]/g, '-') // Remove all non-word chars ( fix for UTF-8 chars )
+                            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                            .replace(/^-+/, '')             // Trim - from start of text
+                            .replace(/-+$/, '');            // Trim - from end of text
+                }
+                slug.val(slugify(title.val()));
+            });
+        });
+    </script>
     <!--Datepicker-->
     <script
+<<<<<<< HEAD
      src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
      {# <script src="{% static "admin/vendor/moment/min/moment-with-langs.min.js" %}"></script> #}
      <!-- Tags input-->
+=======
+            src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+    <!-- Tags input-->
+>>>>>>> 08b31d1118ee548f794543da5002b90681868e99
     <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>
     <!-- Input Mask-->
     <!-- App Main-->
