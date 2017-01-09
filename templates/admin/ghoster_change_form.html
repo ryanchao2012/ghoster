@@ -1,8 +1,8 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_urls admin_static admin_modify ghoster_tags %}
 {% block extrahead %}{{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
-  <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
+    <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {% endblock %}
 
@@ -11,18 +11,18 @@
     {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1"/>{% endif %}
     {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}"/>{% endif %}
     {% if errors %}
-    <div class="card-inverse card-danger">
-      <div class="card-block">
-        <p class="errornote">
-            {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}
-                {% trans "Please correct the errors below." %}{% endif %}
-        </p>
-        {{ adminform.form.non_field_errors }}
-        {% for fieldset in adminform %}
-            {% include "admin/includes/fieldset_error.html" %}
-        {% endfor %}
-      </div>
-      </div>
+        <div class="card-inverse card-danger">
+            <div class="card-block">
+                <p class="errornote">
+                    {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}
+                        {% trans "Please correct the errors below." %}{% endif %}
+                </p>
+                {{ adminform.form.non_field_errors }}
+                {% for fieldset in adminform %}
+                    {% include "admin/includes/fieldset_error.html" %}
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
 
     {{ gh.content }}
@@ -32,7 +32,7 @@
     {% render_post_form adminform.form.instance as gh %}
     <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
           id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
-                <div class="wrapper">{{ block.super }}</div>
+        <div class="wrapper">{{ block.super }}</div>
     </form>
 
 {% endblock %}
@@ -66,100 +66,100 @@
 {% block ghoster-sidebar %}
 
 
-<div class="tab-content">
-            <div class="tab-pane active" id="timeline" role="tabpanel">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>slug</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-warning m-a-0 p-y-1">
-                    <div>{{ gh.meta.slug }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>thumbnail</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-
-                    <button type="button" class="btn btn-primary btn-block"><i class="fa fa-cloud-upload fa-lg"></i> 為選擇任何檔案</button>
-
-
-                    <div>{{ gh.meta.cover }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>page</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-                    <div>{{ gh.meta.page }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>category</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-                    <div>{{ gh.meta.category }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>editor</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-                    <div>{{ gh.meta.editor }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>date</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-
-                  {# data #}
-                  <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <input name="daterange" class="form-control" type="text">
-                                        </div>
-
-
-                    <div>{{ gh.meta.date }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>tags</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-
-                   {# tag #}
-                  <div class="controls">
-                      <select id="select2-2" class="form-control" multiple>
-                          <option>Option 1</option>
-                          <option selected>Option 2</option>
-                          <option>Option 3</option>
-                          <option>Option 4</option>
-                          <option>Option 5</option>
-                      </select>
-                  </div>
-
-
-                    <div>{{ gh.meta.tags }}</div>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                    <small><b>viewers</b></small>
-                </div>
-                <hr class="transparent m-x-1 m-y-0">
-                <div class="callout callout-danger m-a-0 p-y-1">
-                    <div>{{ gh.meta.viewers }}</div>
-                </div>
-
-                <hr class="m-x-1 m-y-0">
+    <div class="tab-content">
+        <div class="tab-pane active" id="timeline" role="tabpanel">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>slug</b></small>
             </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-warning m-a-0 p-y-1">
+                <div>{{ gh.meta.slug }}</div>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>thumbnail</b></small>
+            </div>
+
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+{#                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-cloud-upload fa-lg"></i> 未選擇任何檔案</button>#}
+            {{ gh.meta.cover }}
+
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>page</b></small>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+                <div>{{ gh.meta.page }}</div>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>category</b></small>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+                <div>{{ gh.meta.category }}</div>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>editor</b></small>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+                <div>{{ gh.meta.editor }}</div>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>date</b></small>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+
+                {# data #}
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input name="daterange" class="form-control" type="text">
+                </div>
+
+
+                <div>{{ gh.meta.date }}</div>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>tags</b></small>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+
+                {# tag #}
+                <div class="controls">
+                    <select id="select2-2" class="form-control" multiple>
+                        <option>Option 1</option>
+                        <option selected>Option 2</option>
+                        <option>Option 3</option>
+                        <option>Option 4</option>
+                        <option>Option 5</option>
+                    </select>
+                </div>
+
+
+                <div>{{ gh.meta.tags }}</div>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                <small><b>viewers</b></small>
+            </div>
+            <hr class="transparent m-x-1 m-y-0">
+            <div class="callout callout-danger m-a-0 p-y-1">
+                <div>{{ gh.meta.viewers }}</div>
+            </div>
+
+            <hr class="m-x-1 m-y-0">
         </div>
+    </div>
 {% endblock %}
 
 
@@ -172,21 +172,21 @@
 
 {% block footer %}
 
-<script src="{% static "admin/assets/js/libs/jquery.min.js" %}"></script>
-<script src="{% static "admin/assets/js/libs/tether.min.js" %}"></script>
-<script src="{% static "admin/assets/js/libs/bootstrap.min.js" %}"></script>
-<script src="{% static "admin/assets/js/libs/pace.min.js" %}"></script>
-<!-- Plugins and scripts required by all views -->
-<script src="{% static "admin/assets/js/libs/Chart.min.js" %}"></script>
-<!-- GenesisUI main scripts -->
-<script src="{% static "admin/assets/js/app.js" %}"></script>
-<!-- Plugins and scripts required by this views -->
-<script src="{% static "admin/assets/js/libs/jquery.maskedinput.min.js" %}"></script>
-<script src="{% static "admin/assets/js/libs/moment.min.js" %}"></script>
-<script src="{% static "admin/assets/js/libs/select2.min.js" %}"></script>
-<script src="{% static "admin/assets/js/libs/daterangepicker.min.js" %}"></script>
-<!-- Custom scripts required by this view -->
-<script src="{% static "admin/assets/js/views/forms.js" %}"></script>
+    <script src="{% static "admin/assets/js/libs/jquery.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/libs/tether.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/libs/bootstrap.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/libs/pace.min.js" %}"></script>
+    <!-- Plugins and scripts required by all views -->
+    <script src="{% static "admin/assets/js/libs/Chart.min.js" %}"></script>
+    <!-- GenesisUI main scripts -->
+    <script src="{% static "admin/assets/js/app.js" %}"></script>
+    <!-- Plugins and scripts required by this views -->
+    <script src="{% static "admin/assets/js/libs/jquery.maskedinput.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/libs/moment.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/libs/select2.min.js" %}"></script>
+    <script src="{% static "admin/assets/js/libs/daterangepicker.min.js" %}"></script>
+    <!-- Custom scripts required by this view -->
+    <script src="{% static "admin/assets/js/views/forms.js" %}"></script>
     <!-- START Page Custom Script-->
     <!-- Markdown Area Codemirror and dependencies -->
     <script src="{% static "admin/vendor/codemirror/lib/codemirror.js" %}"></script>
