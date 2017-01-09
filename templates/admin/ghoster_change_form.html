@@ -1,17 +1,10 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_urls admin_static admin_modify ghoster_tags %}
 {% block extrahead %}{{ block.super }}
-<<<<<<< HEAD
-  <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
-  <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
-  <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"/>
-  <link rel="stylesheet" href="{% static "admin/vendor/datetimepicker/css/bootstrap-datetimepicker.css" %}"/>
-
-=======
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
     <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
+    <link rel="stylesheet" href="{% static "admin/vendor/datetimepicker/css/bootstrap-datetimepicker.css" %}"/>
     <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"/>
->>>>>>> 08b31d1118ee548f794543da5002b90681868e99
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {% endblock %}
 
@@ -100,11 +93,6 @@
                 {#                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-cloud-upload fa-lg"></i> 未選擇任何檔案</button>#}
                 {{ gh.meta.cover }}
 
-                  <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                      <input name="daterange" class="form-control" type="text">
-                  </div>
-
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
@@ -137,14 +125,9 @@
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
 
-<<<<<<< HEAD
-                  <div class="datetimepicker input-group date mb-lg">
-                     <input type="text" class="form-control">
-=======
 
                 <div class="datetimepicker input-group date mb-lg">
                     <input type="text" class="form-control">
->>>>>>> 08b31d1118ee548f794543da5002b90681868e99
                      <span class="input-group-addon">
                         <span class="fa fa-calendar"></span>
                      </span>
@@ -197,7 +180,6 @@
     <script src="{% static "admin/assets/js/libs/Chart.min.js" %}"></script>
     <!-- GenesisUI main scripts -->
     <script src="{% static "admin/assets/js/app.js" %}"></script>
-
     <!-- Plugins and scripts required by this views -->
     <script src="{% static "admin/assets/js/libs/jquery.maskedinput.min.js" %}"></script>
     <script src="{% static "admin/assets/js/libs/moment.min.js" %}"></script>
@@ -234,14 +216,8 @@
     </script>
     <!--Datepicker-->
     <script
-<<<<<<< HEAD
-     src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
-     {# <script src="{% static "admin/vendor/moment/min/moment-with-langs.min.js" %}"></script> #}
-     <!-- Tags input-->
-=======
             src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
     <!-- Tags input-->
->>>>>>> 08b31d1118ee548f794543da5002b90681868e99
     <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>
     <!-- Input Mask-->
     <!-- App Main-->
@@ -251,7 +227,6 @@
         textarea.setAttribute('data-uk-markdownarea', '{mode:"split"}');
         textarea.setAttribute('onload', "this.value='#Title Some content'");
     </script>
-  
 {% endblock %}
 
 {#{% extends "admin/base_site.html" %}#}
