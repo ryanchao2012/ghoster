@@ -6,19 +6,28 @@ from django.forms.utils import flatatt
 from django.utils.encoding import force_text
 from django.forms.widgets import CheckboxInput
 from django.utils.html import conditional_escape
+from taggit.forms import TagWidget
+from taggit.utils import edit_string_for_tags
+from django.utils import six
+
 from django.utils.html import smart_urlquote
 from django.utils.translation import ugettext as _
 
-class GhosterTextInputWidget(forms.TextInput):
+class GhTextInputWidget(forms.TextInput):
     def __init__(self, attrs=None):
         final_attrs = {'class': 'form-control'}
         if attrs is not None:
             final_attrs.update(attrs)
-        super(GhosterTextInputWidget, self).__init__(attrs=final_attrs)
+        super(GhTextInputWidget, self).__init__(attrs=final_attrs)
 
+class GhTagInputWidget(TagWidget):
+    def __init__(self, attrs=None):
+        final_attrs = {'data-role': 'tagsinput', 'class': 'form-control'}
+        if attrs is not None:
+            final_attrs.update(attrs)
+        super(GhTagInputWidget, self).__init__(attrs=final_attrs)
 
-
-class GhosterURLFieldWidget(ClearableFileInput):
+class GhURLFieldWidget(ClearableFileInput):
     template_default = (
         '<div class="btn btn-primary btn-block">'
         '<i class="fa fa-cloud-upload fa-lg">%(input)s</i>'
@@ -41,7 +50,7 @@ class GhosterURLFieldWidget(ClearableFileInput):
             'clear_template': '',
             'clear_checkbox_label': self.clear_checkbox_label,
         }
-        template = GhosterURLFieldWidget.template_default
+        template = GhURLFieldWidget.template_default
         substitutions['input'] = super(ClearableFileInput, self).render(name, value, attrs)
 
         if self.is_initial(value):

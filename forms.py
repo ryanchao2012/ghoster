@@ -1,8 +1,8 @@
 from django import forms
 from .models import Post
 from django.contrib.admin.helpers import AdminForm
-from django.contrib.admin.widgets import AdminSplitDateTime, AdminFileWidget
-from .widgets import GhosterURLFieldWidget
+from django.contrib.admin.widgets import AdminSplitDateTime
+from .widgets import GhURLFieldWidget, GhTagInputWidget
 
 class BaseMadiaWidget(forms.TextInput):
     class Media:
@@ -47,7 +47,8 @@ class GhosterMetaForm(forms.ModelForm):
         exclude = ['content']
         widgets = {
             'date': AdminSplitDateTime(),
-            'cover': GhosterURLFieldWidget(),
+            'cover': GhURLFieldWidget(),
+            'tags': GhTagInputWidget(),
         }
 
     def __init__(self, *args, **kwargs):
