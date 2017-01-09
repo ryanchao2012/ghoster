@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('short_title', 'editor', 'page', 'category', 'date', 'publish')
     list_editable = ('page', 'category', 'publish')
     prepopulated_fields = {"slug": ("title",)}
-    search_fields = ('tags', 'editor__name',)
+    search_fields = ('tags__name', 'editor__name',)
     list_filter = ('page__title', 'editor__name')
     change_form_template = 'admin/ghoster_change_form.html'
     add_form_template = 'admin/ghoster_change_form.html'

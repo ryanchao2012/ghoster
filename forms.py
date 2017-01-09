@@ -1,7 +1,9 @@
 from django import forms
 from .models import Post
 from django.contrib.admin.helpers import AdminForm
-from django.contrib.admin.widgets import AdminSplitDateTime
+from django.contrib.admin.widgets import AdminSplitDateTime, AdminFileWidget
+from .widgets import GhosterURLFieldWidget
+
 class BaseMadiaWidget(forms.TextInput):
     class Media:
         css = {
@@ -45,14 +47,14 @@ class GhosterMetaForm(forms.ModelForm):
         exclude = ['content']
         widgets = {
             'date': AdminSplitDateTime(),
+            'cover': GhosterURLFieldWidget(),
         }
 
     def __init__(self, *args, **kwargs):
         super(GhosterMetaForm, self).__init__(*args, **kwargs)
-        # print(self.fields['cover'].__dict__['widget'].template_with_initial)
         self.fields['title'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Untitled'})
         self.fields['slug'].widget.attrs.update({'class': 'form-control'})
-        self.fields['thumbnail'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['thumbnail'].widget.attrs.update({'class': 'form-control'})
         # self.fields['category'].widget.attrs.update({'class': 'form-control'})
 
 

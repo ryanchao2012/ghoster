@@ -40,7 +40,8 @@
                 .parent().parent().toggleClass(options.selectedClass, checked);
         },
         updateCounter = function() {
-            var sel = $(actionCheckboxes).filter(":checked").length;
+            // var sel = $(actionCheckboxes).filter(":selected").length;
+            var sel = $('tr.selected').length;
             // _actions_icnt is defined in the generated HTML
             // and contains the total amount of objects in the queryset
             $(options.counterContainer).html(interpolate(
