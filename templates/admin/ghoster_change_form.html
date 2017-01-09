@@ -1,8 +1,9 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_urls admin_static admin_modify ghoster_tags %}
 {% block extrahead %}{{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
-    <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
+  <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
+  <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"/>
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {% endblock %}
 
@@ -117,50 +118,44 @@
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
+                
 
-                {# data #}
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    <input name="daterange" class="form-control" type="text">
+                  <div class="datetimepicker input-group date mb-lg">
+                     <input type="text" class="form-control">
+                     <span class="input-group-addon">
+                        <span class="fa fa-calendar"></span>
+                     </span>
+                  </div>
+
+
+                    <div>{{ gh.meta.date }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>tags</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+
+                   {# tag #}
+                     <input type="text" data-role="tagsinput" value="" class="form-control">
+
+                    <div>{{ gh.meta.tags }}</div>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    <small><b>viewers</b></small>
+                </div>
+                <hr class="transparent m-x-1 m-y-0">
+                <div class="callout callout-danger m-a-0 p-y-1">
+                    <div>{{ gh.meta.viewers }}</div>
                 </div>
 
-
-                <div>{{ gh.meta.date }}</div>
+                <hr class="m-x-1 m-y-0">
             </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>tags</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-
-                {# tag #}
-                <div class="controls">
-                    <select id="select2-2" class="form-control" multiple>
-                        <option>Option 1</option>
-                        <option selected>Option 2</option>
-                        <option>Option 3</option>
-                        <option>Option 4</option>
-                        <option>Option 5</option>
-                    </select>
-                </div>
-
-
-                <div>{{ gh.meta.tags }}</div>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>viewers</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-                <div>{{ gh.meta.viewers }}</div>
-            </div>
-
-            <hr class="m-x-1 m-y-0">
         </div>
-    </div>
 {% endblock %}
+
 
 
 {% block content_title %}{% endblock %}
@@ -196,6 +191,12 @@
     <script src="{% static "admin/vendor/codemirror/mode/gfm/gfm.js" %}"></script>
     <script src="{% static "admin/vendor/marked/marked.js" %}"></script>
 
+    <!--Datepicker-->
+    <script
+     src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+     <!-- Tags input-->
+    <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>
+    <!-- Input Mask-->
     <!-- App Main-->
     <script src="{% static "admin/js/app-markdownarea.js" %}"></script>
     <script type="text/javascript">
