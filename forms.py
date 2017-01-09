@@ -2,7 +2,7 @@ from django import forms
 from .models import Post
 from django.contrib.admin.helpers import AdminForm
 from django.contrib.admin.widgets import AdminSplitDateTime
-from .widgets import GhURLFieldWidget, GhTagInputWidget
+from .widgets import GhFileFieldWidget, GhTagInputWidget
 
 class BaseMadiaWidget(forms.TextInput):
     class Media:
@@ -26,16 +26,6 @@ class BaseMadiaWidget(forms.TextInput):
               'admin/js/app.js'
               )
 
-
-# class GhosterPostForm(forms.ModelForm):
-#     class Meta:
-#         model = Post
-#         exclude = []
-#         widgets = {
-#             'date': AdminSplitDateTime(),
-#         }
-
-
 class GhosterContentForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -47,7 +37,7 @@ class GhosterMetaForm(forms.ModelForm):
         exclude = ['content']
         widgets = {
             'date': AdminSplitDateTime(),
-            'cover': GhURLFieldWidget(),
+            'cover': GhFileFieldWidget(),
             'tags': GhTagInputWidget(),
         }
 

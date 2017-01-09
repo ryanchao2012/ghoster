@@ -27,7 +27,7 @@ class GhTagInputWidget(TagWidget):
             final_attrs.update(attrs)
         super(GhTagInputWidget, self).__init__(attrs=final_attrs)
 
-class GhURLFieldWidget(ClearableFileInput):
+class GhFileFieldWidget(ClearableFileInput):
     template_default = (
         '<div class="btn btn-primary btn-block">'
         '<i class="fa fa-cloud-upload fa-lg">%(input)s</i>'
@@ -37,8 +37,8 @@ class GhURLFieldWidget(ClearableFileInput):
         '<img src="%(initial_url)s" width="200" /><br />'
         + template_default +
         '%(clear_template)s'
-        # '<p class="file-upload">%s</p>' % forms.ClearableFileInput.template_with_initial
     )
+
     template_with_clear = (
         '%s' % forms.ClearableFileInput.template_with_clear
     )
@@ -50,7 +50,7 @@ class GhURLFieldWidget(ClearableFileInput):
             'clear_template': '',
             'clear_checkbox_label': self.clear_checkbox_label,
         }
-        template = GhURLFieldWidget.template_default
+        template = GhFileFieldWidget.template_default
         substitutions['input'] = super(ClearableFileInput, self).render(name, value, attrs)
 
         if self.is_initial(value):

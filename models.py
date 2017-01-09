@@ -84,22 +84,17 @@ class Post(models.Model):
 
 
     def image_thumb(self):
-        url = ''
-        if self.cover:
-            url = self.cover.url
-            # return '<img src="%s" height="50" />' % (self.cover.url)
-        else:
-            url = 'http://i.giphy.com/3o7ZeODTGuQOeLr3l6.gif'
+        if self.cover: url = self.cover.url
+        else: url = 'http://i.giphy.com/3o7ZeODTGuQOeLr3l6.gif'
         return '<img src="%(url)s" height="60" />' % {'url': url}
-
     image_thumb.allow_tags = True
 
     def short_title(self):
         return '{}'.format(self.title[:20] + ' ...')
 
-    @permalink
-    def get_absolute_url(self):
-        return reverse('single_post', args={'slug': self.slug})
+    # @permalink
+    # def get_absolute_url(self):
+    #     return reverse('single_post', args={'slug': self.slug})
 
     def __str__(self):
         return '{}'.format(self.title)
