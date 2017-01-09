@@ -4,7 +4,6 @@ from django import db
 from django.forms.widgets import Select, CheckboxInput
 from django.contrib.admin import options
 from .widgets import GhTextInputWidget, GhosterWidget
-    # GhosterURLFieldWidget
 
 
 
@@ -16,8 +15,6 @@ class GhosterConfig(AppConfig):
     Select.render = GhosterWidget.select_render
     CheckboxInput.render = GhosterWidget.slider_checkbox_render
     options.FORMFIELD_FOR_DBFIELD_DEFAULTS[db.models.CharField].update({'widget': GhTextInputWidget})
-
-    # options.FORMFIELD_FOR_DBFIELD_DEFAULTS[db.models.CharField]['widget'] = GhosterTextInputWidget
 
 
 

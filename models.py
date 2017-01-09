@@ -84,7 +84,13 @@ class Post(models.Model):
 
 
     def image_thumb(self):
-        return '<img src="%s" height="50" />' % (self.cover.url)
+        url = ''
+        if self.cover:
+            url = self.cover.url
+            # return '<img src="%s" height="50" />' % (self.cover.url)
+        else:
+            url = 'http://i.giphy.com/3o7ZeODTGuQOeLr3l6.gif'
+        return '<img src="%(url)s" height="60" />' % {'url': url}
 
     image_thumb.allow_tags = True
 
