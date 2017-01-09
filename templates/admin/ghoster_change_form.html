@@ -4,6 +4,8 @@
   <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
   <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
   <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"/>
+  <link rel="stylesheet" href="{% static "admin/vendor/datetimepicker/css/bootstrap-datetimepicker.css" %}"/>
+
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
 {% endblock %}
 
@@ -91,6 +93,7 @@
                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                       <input name="daterange" class="form-control" type="text">
                   </div>
+
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
@@ -177,6 +180,7 @@
     <script src="{% static "admin/assets/js/libs/Chart.min.js" %}"></script>
     <!-- GenesisUI main scripts -->
     <script src="{% static "admin/assets/js/app.js" %}"></script>
+
     <!-- Plugins and scripts required by this views -->
     <script src="{% static "admin/assets/js/libs/jquery.maskedinput.min.js" %}"></script>
     <script src="{% static "admin/assets/js/libs/moment.min.js" %}"></script>
@@ -196,6 +200,7 @@
     <!--Datepicker-->
     <script
      src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+     {# <script src="{% static "admin/vendor/moment/min/moment-with-langs.min.js" %}"></script> #}
      <!-- Tags input-->
     <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>
     <!-- Input Mask-->
@@ -206,6 +211,7 @@
         textarea.setAttribute('data-uk-markdownarea', '{mode:"split"}');
         textarea.setAttribute('onload', "this.value='#Title Some content'");
     </script>
+  
 {% endblock %}
 
 {#{% extends "admin/base_site.html" %}#}
