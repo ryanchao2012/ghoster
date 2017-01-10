@@ -65,6 +65,26 @@ class GhFileFieldWidget(ClearableFileInput):
                 substitutions['clear_template'] = self.template_with_clear % substitutions
         return mark_safe(template % substitutions)
 
+
+class GhCheckboxInput(CheckboxInput):
+    template_slider = (
+        '<label class="switch switch-icon switch-pill switch-primary">'
+        '<input{} />'
+        '<span class="switch-label" data-on="&#xF00C;" data-off="&#xF00D;"></span>'
+        '<span class="switch-handle"></span></label>'
+    )
+    def render(self, name, value, attrs=None):
+        final_attrs = self.build_attrs(attrs, type='checkbox', name=name)
+        if self.check_test(value):
+            final_attrs['checked'] = 'checked'
+        if not (value is True or value is False or value is None or value == ''):
+            # Only add the 'value' attribute if a value is non-empty.
+            final_attrs['value'] = force_text(value)
+        if 'id' in final_attrs and 'name' in final_attrs:
+            final_attrs.update({'class': 'switch-input'})
+            return format_html(GhosterWidget.template_slider, flatatt(final_attrs))
+        return format_html('<input{} />', flatatt(final_attrs))
+
 class GhosterWidget(object):
     template_slider = (
         '<label class="switch switch-icon switch-pill switch-primary">'

@@ -2,7 +2,10 @@ from django import forms
 from .models import Post
 from django.contrib.admin.helpers import AdminForm
 from django.contrib.admin.widgets import AdminSplitDateTime
-from .widgets import GhFileFieldWidget, GhTagInputWidget
+from .widgets import (
+    GhFileFieldWidget, GhTagInputWidget,
+    GhCheckboxInput, GhTextInputWidget,
+)
 
 class BaseMadiaWidget(forms.TextInput):
     class Media:
@@ -26,26 +29,29 @@ class BaseMadiaWidget(forms.TextInput):
               'admin/js/app.js'
               )
 
-class GhosterContentForm(forms.ModelForm):
+class GhosterPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['content']
-
-class GhosterMetaForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        exclude = ['content']
+        exclude = []
         widgets = {
+            'title': GhTextInputWidget(),
+            'slug': GhTextInputWidget(),
             'date': AdminSplitDateTime(),
             'cover': GhFileFieldWidget(),
             'tags': GhTagInputWidget(),
+            'publish': GhCheckboxInput(),
         }
+
+class GhosterContentForm(forms.ModelForm):
+    class Meta(GhosterPostForm.Meta):
+        fields = ['content']
+
+class GhosterMetaForm(forms.ModelForm):
+    class Meta(GhosterPostForm.Meta):
+        exclude = ['content']
 
     def __init__(self, *args, **kwargs):
         super(GhosterMetaForm, self).__init__(*args, **kwargs)
-        self.fields['title'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Untitled'})
-        self.fields['slug'].widget.attrs.update({'class': 'form-control'})
-        # self.fields['thumbnail'].widget.attrs.update({'class': 'form-control'})
-        # self.fields['category'].widget.attrs.update({'class': 'form-control'})
+        self.fields['title'].widget.attrs.update({'placeholder': 'Untitled'})
 
 
