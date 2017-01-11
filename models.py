@@ -55,17 +55,6 @@ class Page(models.Model):
         verbose_name_plural = verbose_name
 
 
-# class Tag(models.Model):
-#     name = models.CharField(max_length=31)
-#
-#     def __str__(self):
-#         return '{}'.format(self.name)
-#
-#     class Meta:
-#         verbose_name = _('TAG')
-#         verbose_name_plural = verbose_name
-
-import os
 def content_file_name(instance, filename):
     return '/'.join(['ghoster', instance.title, filename])
 class Post(models.Model):
@@ -102,4 +91,3 @@ class Post(models.Model):
     class Meta:
         verbose_name = _('POST')
         verbose_name_plural = verbose_name
-
