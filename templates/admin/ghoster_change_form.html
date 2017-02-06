@@ -32,7 +32,7 @@
 {% endblock %}
 
 {% block ghoster-cms %}
-    {% render_post_form adminform %}
+    {# {% render_post_form adminform %} #}
     <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
           id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
         <div class="wrapper">{{ block.super }}</div>
@@ -70,91 +70,90 @@
 {% block ghoster-sidebar %}
 
 
-    <div class="tab-content">
-        <div class="tab-pane active" id="timeline" role="tabpanel">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>slug</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-warning m-a-0 p-y-1">
-                {# <div>{{ gh.meta.slug }}</div> #}
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
+{#     <div class="tab-content">#}
+{#         <div class="tab-pane active" id="timeline" role="tabpanel">#}
+            {% block field_sets %}
+                {% for fieldset in adminform %}
+                    <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                    {% include "admin/includes/ghoster_fieldset.html" %}
+                    </div>
+                {% endfor %}
+            {% endblock %}
 
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>thumbnail</b></small>
-            </div>
-
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-                {# {{ gh.meta.cover }} #}
-
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>page</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-                {# <div>{{ gh.meta.page }}</div> #}
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>category</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-                {# <div>{{ gh.meta.category }}</div> #}
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>editor</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-                {# <div>{{ gh.meta.editor }}</div> #}
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>date</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-
-
-                <div class="datetimepicker input-group date mb-lg">
-                    <input type="text" class="form-control">
-                     <span class="input-group-addon">
-                        <span class="fa fa-calendar"></span>
-                     </span>
-                </div>
-
-
-                {# <div>{{ gh.meta.date }}</div> #}
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>tags</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-
+{#            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">#}
+{#                <small><b>slug</b></small>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout callout-warning m-a-0 p-y-1">#}
+{#                <div>{{ gh.meta.slug }}</div>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">#}
+{#                <small><b>thumbnail</b></small>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout callout-danger m-a-0 p-y-1">#}
+                {#                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-cloud-upload fa-lg"></i> 未選擇任何檔案</button>#}
+{#                {{ gh.meta.cover }}#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">#}
+{#                <small><b>page</b></small>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout callout-danger m-a-0 p-y-1">#}
+{#                <div>{{ gh.meta.page }}</div>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">#}
+{#                <small><b>category</b></small>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout callout-danger m-a-0 p-y-1">#}
+{#                <div>{{ gh.meta.category }}</div>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">#}
+{#                <small><b>editor</b></small>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout callout-danger m-a-0 p-y-1">#}
+{#                <div>{{ gh.meta.editor }}</div>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">#}
+{#                <small><b>date</b></small>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout callout-danger m-a-0 p-y-1">#}
+{#                <div class="datetimepicker input-group date mb-lg">#}
+{#                    <input type="text" class="form-control">#}
+{#                     <span class="input-group-addon">#}
+{#                        <span class="fa fa-calendar"></span>#}
+{#                     </span>#}
+{#                </div>#}
+{#                <div>{{ gh.meta.date }}</div>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">#}
+{#                <small><b>tags</b></small>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout callout-danger m-a-0 p-y-1">#}
                 {# tag #}
-
-                {# <div>{{ gh.meta.tags }}</div> #}
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
-                <small><b>viewers</b></small>
-            </div>
-            <hr class="transparent m-x-1 m-y-0">
-            <div class="callout callout-danger m-a-0 p-y-1">
-                {# <div>{{ gh.meta.viewers }}</div> #}
-            </div>
-
-            <hr class="m-x-1 m-y-0">
-        </div>
-    </div>
+{#                <div>{{ gh.meta.tags }}</div>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">#}
+{#                <small><b>viewers</b></small>#}
+{#            </div>#}
+{#            <hr class="transparent m-x-1 m-y-0">#}
+{#            <div class="callout callout-danger m-a-0 p-y-1">#}
+{#                <div>{{ gh.meta.viewers }}</div>#}
+{#            </div>#}
+{#            <hr class="m-x-1 m-y-0">#}
+{#         </div>#}
+{#     </div>#}
 {% endblock %}
 
 
