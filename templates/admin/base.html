@@ -2,7 +2,8 @@
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
-    {% get_base_media as base_media %}
+    {% get_gh_app_list as ghoster_app_list %}
+    {# {% get_base_media as base_media %} #}
     <title>{% block title %}{% endblock %}</title>
     {% block stylesheet %}
         <link rel="stylesheet" type="text/css" href="{% static "admin/assets/css/style.css" %}"/>

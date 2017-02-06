@@ -26,15 +26,12 @@
         </div>
     {% endif %}
 
-    {{ gh.content }}
+    {# {{ gh.content }} #}
 
-    {#    <script>#}
-    {#    #}
-    {#    </script>#}
 {% endblock %}
 
 {% block ghoster-cms %}
-    {% render_post_form adminform.form.instance as gh %}
+    {% render_post_form adminform %}
     <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
           id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
         <div class="wrapper">{{ block.super }}</div>
@@ -63,7 +60,7 @@
 
 {% block ghoster-topbar %}
     <div class="form-inline form-title pull-xs-left p-x-2 col-md-6">
-        {{ gh.meta.title }}
+        {# {{ gh.meta.title }} #}
     </div>
 {% endblock %}
 
@@ -79,7 +76,7 @@
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-warning m-a-0 p-y-1">
-                <div>{{ gh.meta.slug }}</div>
+                {# <div>{{ gh.meta.slug }}</div> #}
             </div>
             <hr class="transparent m-x-1 m-y-0">
 
@@ -89,8 +86,7 @@
 
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
-                {#                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-cloud-upload fa-lg"></i> 未選擇任何檔案</button>#}
-                {{ gh.meta.cover }}
+                {# {{ gh.meta.cover }} #}
 
             </div>
             <hr class="transparent m-x-1 m-y-0">
@@ -99,7 +95,7 @@
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
-                <div>{{ gh.meta.page }}</div>
+                {# <div>{{ gh.meta.page }}</div> #}
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
@@ -107,7 +103,7 @@
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
-                <div>{{ gh.meta.category }}</div>
+                {# <div>{{ gh.meta.category }}</div> #}
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
@@ -115,7 +111,7 @@
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
-                <div>{{ gh.meta.editor }}</div>
+                {# <div>{{ gh.meta.editor }}</div> #}
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
@@ -133,7 +129,7 @@
                 </div>
 
 
-                <div>{{ gh.meta.date }}</div>
+                {# <div>{{ gh.meta.date }}</div> #}
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
@@ -144,7 +140,7 @@
 
                 {# tag #}
 
-                <div>{{ gh.meta.tags }}</div>
+                {# <div>{{ gh.meta.tags }}</div> #}
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
@@ -152,7 +148,7 @@
             </div>
             <hr class="transparent m-x-1 m-y-0">
             <div class="callout callout-danger m-a-0 p-y-1">
-                <div>{{ gh.meta.viewers }}</div>
+                {# <div>{{ gh.meta.viewers }}</div> #}
             </div>
 
             <hr class="m-x-1 m-y-0">
