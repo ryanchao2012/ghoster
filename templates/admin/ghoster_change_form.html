@@ -1,5 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_urls admin_static admin_modify ghoster_tags %}
+
 {% block extrahead %}{{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/markdown.css" %}"/>
     <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"/>
@@ -7,10 +8,12 @@
     <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"/>
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
     {{ media }}
+
 {% endblock %}
 
 
 {% block content %}
+
     {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1"/>{% endif %}
     {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}"/>{% endif %}
     {% if errors %}
@@ -27,18 +30,20 @@
             </div>
         </div>
     {% endif %}
-    <span class="datetimeshortcuts">
-    <a href="javascript:DateTimeShortcuts.openClock(0);" id="clocklink0">
-    <span class="clock-icon" title="Choose a Time">1111</span>
-    </a>
-    </span>
-    
+
+{#    TODO: don't know why span disappear and jq doesn't work #}
+{#    <span class="datetimeshortcuts">#}
+{#    <a href="javascript:DateTimeShortcuts.openClock(0);" id="clocklink0">#}
+{#    <span class="clock-icon" title="Choose a Time">1111</span>#}
+{#    </a>#}
+{#    </span>#}
+    {{ ghosterform.markdown }}
     {# {{ gh.content }} #}
 
 {% endblock %}
 
 {% block ghoster-cms %}
-    {# {% render_post_form adminform %} #}
+    {% get_ghoster_form adminform as ghosterform %}
     <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
           id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
         <div class="wrapper">{{ block.super }}</div>
@@ -68,6 +73,7 @@
 {% block ghoster-topbar %}
 
     <div class="form-inline form-title pull-xs-left p-x-2 col-md-6">
+        {{ ghosterform.title }}
         {# {{ gh.meta.title }} #}
     </div>
 {% endblock %}
@@ -80,7 +86,7 @@
      <div class="tab-content">
          <div class="tab-pane active" id="timeline" role="tabpanel">
             {% block field_sets %}
-                {% for fieldset in adminform %}
+                {% for fieldset in ghosterform.meta %}
                     {% include "admin/includes/ghoster_fieldset.html" %}
                     </div>
                 {% endfor %}
@@ -215,19 +221,19 @@
 {#            });#}
 {#        });#}
 {#    </script>#}
-{#    <!--Datepicker-->#}
-{#    <script#}
-{#            src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>#}
+    <!--Datepicker-->
+    <script
+            src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
     <!-- Tags input-->
-{#    <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>#}
+    <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>
     <!-- Input Mask-->
     <!-- App Main-->
-{#    <script src="{% static "admin/js/app-markdownarea.js" %}"></script>#}
-{#    <script type="text/javascript">#}
-{#        var textarea = document.getElementById('id_content');#}
-{#        textarea.setAttribute('data-uk-markdownarea', '{mode:"split"}');#}
-{#        textarea.setAttribute('onload', "this.value='#Title Some content'");#}
-{#    </script>#}
+    <script src="{% static "admin/js/app-markdownarea.js" %}"></script>
+    <script type="text/javascript">
+        var textarea = document.getElementById("{{ghosterform.markdown.id}}");
+        textarea.setAttribute('data-uk-markdownarea', '{mode:"split"}');
+        textarea.setAttribute('onload', "this.value='#Title Some content'");
+    </script>
 
 {% endblock %}
 

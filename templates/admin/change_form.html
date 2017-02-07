@@ -48,38 +48,6 @@
     {% endif %}{% endif %}
 {% endblock %}
 
-{#{% block ghoster-title %}#}
-{#    <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">#}
-{#        <!-- Header -->#}
-{#        <div class="navbar-header">#}
-{#            <a href="#" class="navbar-brand">#}
-{#                <div class="brand-logo">{% block branding %}{{ block.super }}{% endblock %}</div>#}
-{#                <div class="brand-logo-collapsed">DJ</div>#}
-{#            </a>#}
-{#        </div>#}
-{#        <div class="nav-wrapper">#}
-{#            <ul class="nav navbar-nav navbar-right">#}
-{##}
-{##}
-{#                <li>#}
-{#                    <a href="#" data-toggle="offsidebar">#}
-{#                        <span class="oi oi-align-right"></span>#}
-{#                    </a>#}
-{#                </li>#}
-{#            </ul>#}
-{#        </div>#}
-{#    </nav>#}
-{#    <aside class="offsidebar">#}
-{#        <!-- START Off Sidebar (right)-->#}
-{##}
-{##}
-{#        <!-- END Off Sidebar (right)-->#}
-{#    </aside>#}
-{#{% endblock %}#}
-
-
-
-
 {% block content %}
     <div class="card">
         <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"

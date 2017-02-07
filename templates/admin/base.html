@@ -138,7 +138,7 @@
                 </ol>
             {% endblock %}
         {% endif %}
-
+        <div class="container-fluid">
         {% block messages %}
             {% if messages %}
                 <div class="card-inverse card-success">
@@ -152,7 +152,6 @@
         {% endblock messages %}
 
         <!-- Content -->
-        <div class="container-fluid">
             {% block content %}
                 {{ content }}
             {% endblock %}
