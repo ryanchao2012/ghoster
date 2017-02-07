@@ -21,30 +21,33 @@
                         </div>
                     {% endif %}
                         {% if field.is_checkbox %}
+                            
+                            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
+                            <small><b>{{ field.label_tag }}</b></small>
+                            </div>
                             {{ field.field }}
-                            {# <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase"> #}
-                                <small><b>{{ field.label_tag }}</b></small>
-                            {# </div> #}
+                            
                         {% else %}
-                            {# <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase"> #}
+                            <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
                                 <small><b>{{ field.label_tag }}</b></small>
-                            {# </div> #}
-                            {# <hr class="transparent m-x-1 m-y-0"> #}
-                            {# <div class="callout callout-warning m-a-0 p-y-1"> #}
+                            </div>
+                            <hr class="transparent m-x-1 m-y-0">
+                            <div class="callout callout-warning m-a-0 p-y-0">
                             {% if field.is_readonly %}
                                 <p>{{ field.contents }}</p>
                             {% else %}
                                 {{ field.field }}
                             {% endif %}
-                            {# </div> #}
+                            </div>
                         {% endif %}
                         {% if field.field.help_text %}
                             <p class="help">{{ field.field.help_text|safe }}</p>
                         {% endif %}
-                        <hr class="transparent m-x-1 m-y-0">
+
                 </div>
             {% endfor %}
         </div>
+        <hr class="transparent m-x-1 m-y-1">
         
     {% endfor %}
 

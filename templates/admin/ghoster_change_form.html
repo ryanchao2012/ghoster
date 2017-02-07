@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static "admin/vendor/datetimepicker/css/bootstrap-datetimepicker.css" %}"/>
     <link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"/>
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+    {{ media }}
 {% endblock %}
 
 
@@ -26,7 +27,12 @@
             </div>
         </div>
     {% endif %}
-
+    <span class="datetimeshortcuts">
+    <a href="javascript:DateTimeShortcuts.openClock(0);" id="clocklink0">
+    <span class="clock-icon" title="Choose a Time">1111</span>
+    </a>
+    </span>
+    
     {# {{ gh.content }} #}
 
 {% endblock %}
@@ -60,6 +66,7 @@
 {% endblock %}
 
 {% block ghoster-topbar %}
+
     <div class="form-inline form-title pull-xs-left p-x-2 col-md-6">
         {# {{ gh.meta.title }} #}
     </div>
@@ -70,11 +77,10 @@
 {% block ghoster-sidebar %}
 
 
-{#     <div class="tab-content">#}
-{#         <div class="tab-pane active" id="timeline" role="tabpanel">#}
+     <div class="tab-content">
+         <div class="tab-pane active" id="timeline" role="tabpanel">
             {% block field_sets %}
                 {% for fieldset in adminform %}
-                    <div class="callout m-a-0 p-y-h text-muted text-xs-center bg-faded text-uppercase">
                     {% include "admin/includes/ghoster_fieldset.html" %}
                     </div>
                 {% endfor %}
@@ -152,8 +158,8 @@
 {#                <div>{{ gh.meta.viewers }}</div>#}
 {#            </div>#}
 {#            <hr class="m-x-1 m-y-0">#}
-{#         </div>#}
-{#     </div>#}
+         </div>
+     </div>
 {% endblock %}
 
 
@@ -191,222 +197,37 @@
     <script src="{% static "admin/vendor/codemirror/mode/gfm/gfm.js" %}"></script>
     <script src="{% static "admin/vendor/marked/marked.js" %}"></script>
 
-
-    <script>
-        // slugify title into the slug field
-        $(function () {
-            var title = $("input#id_title"),
-                slug = $("input#id_slug");
-            title.on('input', function (e) {
-                function slugify(text) {
-                    return text.toString().toLowerCase()
-                            .replace(/\s+/g, '-')           // Replace spaces with -
-                            .replace(/[^\u0080-\uFFFF\w\-]/g, '-') // Remove all non-word chars ( fix for UTF-8 chars )
-                            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-                            .replace(/^-+/, '')             // Trim - from start of text
-                            .replace(/-+$/, '');            // Trim - from end of text
-                }
-                slug.val(slugify(title.val()));
-            });
-        });
-    </script>
-    <!--Datepicker-->
-    <script
-            src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>
+{#    <script>#}
+{#        // slugify title into the slug field#}
+{#        $(function () {#}
+{#            var title = $("input#id_title"),#}
+{#                slug = $("input#id_slug");#}
+{#            title.on('input', function (e) {#}
+{#                function slugify(text) {#}
+{#                    return text.toString().toLowerCase()#}
+{#                            .replace(/\s+/g, '-')           // Replace spaces with -#}
+{#                            .replace(/[^\u0080-\uFFFF\w\-]/g, '-') // Remove all non-word chars ( fix for UTF-8 chars )#}
+{#                            .replace(/\-\-+/g, '-')         // Replace multiple - with single -#}
+{#                            .replace(/^-+/, '')             // Trim - from start of text#}
+{#                            .replace(/-+$/, '');            // Trim - from end of text#}
+{#                }#}
+{#                slug.val(slugify(title.val()));#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+{#    <!--Datepicker-->#}
+{#    <script#}
+{#            src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>#}
     <!-- Tags input-->
-    <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>
+{#    <script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>#}
     <!-- Input Mask-->
     <!-- App Main-->
-    <script src="{% static "admin/js/app-markdownarea.js" %}"></script>
-    <script type="text/javascript">
-        var textarea = document.getElementById('id_content');
-        textarea.setAttribute('data-uk-markdownarea', '{mode:"split"}');
-        textarea.setAttribute('onload', "this.value='#Title Some content'");
-    </script>
+{#    <script src="{% static "admin/js/app-markdownarea.js" %}"></script>#}
+{#    <script type="text/javascript">#}
+{#        var textarea = document.getElementById('id_content');#}
+{#        textarea.setAttribute('data-uk-markdownarea', '{mode:"split"}');#}
+{#        textarea.setAttribute('onload', "this.value='#Title Some content'");#}
+{#    </script>#}
+
 {% endblock %}
 
-{#{% extends "admin/base_site.html" %}#}
-{#{% load i18n admin_urls admin_static admin_modify %}#}
-{##}
-{#{% block extrahead %}{{ block.super }}#}
-{#    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>#}
-{#    <link rel="stylesheet" href="{% static "admin/vendor/codemirror/lib/codemirror.css" %}"#}
-{#>#}
-{#<link rel="stylesheet" href="{% static "admin/vendor/chosen/chosen.min.css" %}"#}
-{#>#}
-{#<link rel="stylesheet" href="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.css" %}"#}
-{#>#}
-{#<link rel="stylesheet" href="{% static "admin/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css" %}"#}
-{#>#}
-{#<script src="{% static "admin/vendor/modernizr/modernizr.js" %}" type="application/javascript"></script>#}
-{#<!-- FastClick for mobiles-->#}
-{#<script src="{% static "admin/vendor/fastclick/fastclick.js" %}" type="application/javascript"></script>#}
-{#    {{ media }}#}
-{#{% endblock %}#}
-{##}
-{##}
-{#{% block ghoster-title %}#}
-{#    <nav role="navigation" class="navbar navbar-default navbar-top navbar-fixed-top">#}
-{#        <!-- Header -->#}
-{#        <div class="navbar-header">#}
-{#            <a href="#" class="navbar-brand">#}
-{#                <div class="brand-logo">{% block branding %}{{ block.super }}{% endblock %}</div>#}
-{#                <div class="brand-logo-collapsed">DJ</div>#}
-{#            </a>#}
-{#        </div>#}
-{#        <div class="nav-wrapper">#}
-{#            <ul class="nav navbar-nav">#}
-{#                <li>#}
-{#                    <input type="text" class="form-control form-control-rounded mt10">#}
-{#                </li>#}
-{#            </ul>#}
-{#            <ul class="nav navbar-nav navbar-right">#}
-{##}
-{#              {% block object-tools %}#}
-{#              {% if change %}{% if not is_popup %}#}
-{#                  {% block object-tools-items %}#}
-{#                  <li>#}
-{#                      {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}#}
-{#                      <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>#}
-{#                  </li>#}
-{#                  {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}#}
-{#                  {% endblock %}#}
-{#              {% endif %}{% endif %}#}
-{#              {% endblock %}#}
-{##}
-{##}
-{#                <li>#}
-{#                    <input type="submit" value="儲存" class="btn btn-primary btn-sm mt15">#}
-{#                </li>#}
-{#                <li>#}
-{#                    <a href="#" data-toggle="offsidebar">#}
-{#                        <span class="oi oi-align-right"></span>#}
-{#                    </a>#}
-{#                </li>#}
-{#            </ul>#}
-{#        </div>#}
-{#    </nav>#}
-{#    <aside class="offsidebar">#}
-{#         <!-- START Off Sidebar (right)-->#}
-{#         <nav>#}
-{#            <ul class="nav">#}
-{#              <li class="p">#}
-{#                  <small class="text-muted">IMAGE</small>#}
-{#               </li>#}
-{#              <li class="p">#}
-{##}
-{#              <div id="upload-drop" class="box-placeholder text-center">#}
-{#                 <p>#}
-{#                    <em class="fa fa-cloud-upload fa-2x"></em>#}
-{#                 </p>Upload files by dropping them here or <a href="#" class="form-file">選擇檔案<input id="upload-select" type="file" name="upfile"></a>#}
-{#              </div>#}
-{#              <div id="progressbar" class="progress hidden">#}
-{#                 <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="progress-bar"></div>#}
-{#              </div>#}
-{##}
-{#            </li>#}
-{##}
-{##}
-{# <li class="p">#}
-{#     <small class="text-muted">CATEGORY</small>#}
-{#  </li>#}
-{# <li class="p">#}
-{#   <select name="account" class="form-control m-b">#}
-{#      <option>Option 1</option>#}
-{#      <option>Option 2</option>#}
-{#   </select>#}
-{#   </li>#}
-{#   <li class="p">#}
-{#       <small class="text-muted">EDITOR</small>#}
-{#    </li>#}
-{#   <li class="p">#}
-{#     <select name="account" class="form-control m-b">#}
-{#        <option>Option 1</option>#}
-{#        <option>Option 2</option>#}
-{#     </select>#}
-{#     </li>#}
-{##}
-{##}
-{#  <li class="p">#}
-{#      <small class="text-muted">TAG</small>#}
-{#   </li>#}
-{#<li class="p">#}
-{#<input type="text" data-role="tagsinput" value="Amsterdam,Washington" class="form-control">#}
-{#</li>#}
-{##}
-{#<li class="p">#}
-{#    <small class="text-muted">DATE</small>#}
-{# </li>#}
-{##}
-{# <li class="p">#}
-{##}
-{# <div class="datetimepicker input-group date mb-lg">#}
-{#    <input type="text" class="form-control">#}
-{#    <span class="input-group-addon">#}
-{#       <span class="fa fa-calendar"></span>#}
-{#    </span>#}
-{# </div>#}
-{##}
-{#</li>#}
-{##}
-{# </ul>#}
-{# </nav>#}
-{##}
-{#         <!-- END Off Sidebar (right)-->#}
-{#      </aside>#}
-{#{% endblock %}#}
-{##}
-{##}
-{##}
-{#{% block content_title %}#}
-{#{% endblock %}#}
-{##}
-{#{% block content %}#}
-{##}
-{##}
-{##}
-{##}
-{#    <textarea data-uk-markdownarea="{mode:'split'}" onload="this.value='#Title Some content'">{{ original.content }}</textarea>#}
-{##}
-{##}
-{#    {{ original.content }}#}
-{#        {{ original.date }}#}
-{#        {{ original.editor }}#}
-{#     JavaScript for prepopulated fields#}
-{#        {% prepopulated_fields_js %}#}
-{##}
-{#{% endblock %}#}
-{##}
-{#{% block footer %}#}
-{#<script src="{% static "admin/vendor/jquery/jquery.min.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/bootstrap/js/bootstrap.min.js" %}"></script>#}
-{#<!-- Plugins-->#}
-{#<script src="{% static "admin/vendor/chosen/chosen.jquery.min.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/slider/js/bootstrap-slider.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/filestyle/bootstrap-filestyle.min.js" %}"></script>#}
-{#<!-- Animo-->#}
-{#<script src="{% static "admin/vendor/animo/animo.min.js" %}"></script>#}
-{#<!-- Sparklines-->#}
-{#<script src="{% static "admin/vendor/sparklines/jquery.sparkline.min.js" %}"></script>#}
-{#<!-- Slimscroll-->#}
-{#<script src="{% static "admin/vendor/slimscroll/jquery.slimscroll.min.js" %}"></script>#}
-{#<!-- START Page Custom Script-->#}
-{#<!-- Markdown Area Codemirror and dependencies -->#}
-{#<script src="{% static "admin/vendor/codemirror/lib/codemirror.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/codemirror/addon/mode/overlay.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/codemirror/mode/markdown/markdown.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/codemirror/mode/xml/xml.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/codemirror/mode/gfm/gfm.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/marked/marked.js" %}"></script>#}
-{#<!-- MomentJs and Datepicker-->#}
-{#<script src="{% static "admin/vendor/moment/min/moment-with-langs.min.js" %}"></script>#}
-{#<script src="{% static "admin/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js" %}"></script>#}
-{#<!-- Tags input-->#}
-{#<script src="{% static "admin/vendor/tagsinput/bootstrap-tagsinput.min.js" %}"></script>#}
-{#<!-- Input Mask-->#}
-{#<script src="{% static "admin/vendor/inputmask/jquery.inputmask.bundle.min.js" %}"></script>#}
-{#<!-- END Page Custom Script-->#}
-{#<!-- App Main-->#}
-{#<script src="{% static "admin/js/app.js"  %}"></script>#}
-{##}
-{#{% endblock %}#}

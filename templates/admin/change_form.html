@@ -81,7 +81,6 @@
 
 
 {% block content %}
-    {% render_post_form adminform as adminform %}
     <div class="card">
         <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post"
               id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
